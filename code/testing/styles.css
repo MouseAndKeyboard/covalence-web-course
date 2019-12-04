@@ -1,4 +1,4 @@
-.boxes {
+/* .boxes {
     display: flex;
     height: 5em;
     border: 1px solid red;
@@ -9,4 +9,20 @@
 .boxes div {
     border: 1px solid black;
     padding: 1em;
+} */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+}
+
+.element { 
+    padding: 2em;
+}
+
+body {
+    background: grey;
+    margin: 0;
 }
