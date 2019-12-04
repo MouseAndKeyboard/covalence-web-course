@@ -1,0 +1,115 @@
+body {
+    font-family: 'Solway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: lightgray
+}
+
+h2, p, .readme-wrapper {
+    text-align: center;
+}
+
+p, a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a  {
+    border: 1em black;
+    text-decoration: none;
+    color: firebrick;
+}
+
+.boxes {
+    text-align: center;
+    width: 30em;
+    margin: 1.2em;
+    padding: 1.4em;
+    border: 0.2em solid black;
+    border-radius: 10%;
+    position: relative;
+    display: block;
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: solid;
+    color: chocolate;
+}
+
+.image-container {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background-color: white;
+    position: relative;
+    display: inline-block;
+    top: 3em;
+    right: 13em;
+}
+
+.keyword {
+    font-weight: 600;
+    color: navy;
+}
+
+#box1 {
+    background: rgb(214, 214, 214);
+}
+#box2 {
+    position: absolute;
+    top: 0em;
+    left: 35em;
+    background: rgb(231, 231, 231);
+}
+#box3 {
+    background: rgb(240, 240, 240);
+}
+#box4 {
+    background: rgb(243, 243, 243);
+}
+
+h1 {
+    color: indigo;
+}
+
+.original {
+    color: blueviolet;
+}
+
+.additional {
+    color: darkorchid;
+}
+
+#show1 {
+    color: peru;
+}
+
+#show2 {
+    color: darkorange;
+}
+
+#show3 {
+    color: orange;
+}
+
+#show4 {
+    color: sandybrown;
+}
+
+#show5 {
+    color: darksalmon;
+}
+
+ul {
+    color: red;
+}
+
+.star {
+    color: slateblue;
+}
+
+.wars {
+    color: blue
+}
+
+.lists {
+    border: 2px black solid
+}
