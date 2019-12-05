@@ -1,0 +1,15 @@
+body {
+    background: azure;
+}
+
+h1 {
+    color: slateblue;
+}
+
+.friend {
+    background: red;
+}
+
+.friend > h3 {
+    text-transform: uppercase;
+}
