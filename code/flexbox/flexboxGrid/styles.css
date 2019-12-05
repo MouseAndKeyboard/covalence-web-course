@@ -1,0 +1,23 @@
+.holder { 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.square {
+    flex-grow: 1;
+    flex-shrink: 0;
+    display: inline-flex;
+    padding: 5em;
+    background: red;
+    border: 1px black solid;
+    order: 0
+}
+
+.square:nth-of-type(2) {
+    background: blue;
+    order: 0;
+    flex-shrink: 5;
+    flex-grow: 5;
+}
