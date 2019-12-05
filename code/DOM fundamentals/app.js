@@ -19,5 +19,19 @@ document.addEventListener("DOMContentLoaded", function(){
 
     // insert element to document
     document.body.appendChild(paragraph);
+
+    let btn = document.createElement("button");
+    let btn_text = document.createTextNode("Click me")
+    btn.appendChild(btn_text)
+
+    // insert element to document
+    document.body.appendChild(btn);
+
+    btn.addEventListener("click", function(){
+        let h1 = document.createElement('h1');
+        let h1_text = document.createTextNode("You clicked me!");
+        h1.appendChild(h1_text);
+        document.body.appendChild(h1);
+    });
 });
 
