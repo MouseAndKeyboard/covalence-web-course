@@ -13,7 +13,17 @@ function TextBoxButton() {
 }
 
 function ChangingDiv() {
+    $('#divlocation').append('<div class="hoverbox" id="hoverdiv"></div>');
 
+    $('#hoverdiv').hover(
+        // mouse enter
+        function(){
+            $(this).css('background-color', 'red');
+        },
+        // mouse leave
+        function(){
+            $(this).css('background-color', 'lightcoral');
+        });
 }
 
 function ChangingParagraph() {
