@@ -13,6 +13,16 @@ function CreateButton(){
     buttonHolder.appendChild(button);
 }
 
+function TextBoxButton(){
+    let textbox = document.getElementById('textbox');
+    let btn = document.getElementById('textboxButton');
+
+    btn.addEventListener('click', function() {
+        let textboxContent = textbox.value;
+        alert(textboxContent);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     CreateButton();
     TextBoxButton();
