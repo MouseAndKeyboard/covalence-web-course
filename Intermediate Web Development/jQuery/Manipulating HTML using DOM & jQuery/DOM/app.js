@@ -69,10 +69,35 @@ function AddName(){
     });
 }
 
+currentIndex = 0;
+function AddFriend(){
+    let friends = ['Bob', 'Jeff', 'Jane', 'Alex', 'Sam', 'Tom']
+    let friendList = document.getElementById('friendList');
+    let friendListBtn = document.getElementById('addFriendButton');
+
+    friendListBtn.addEventListener('click', function(){
+        if (currentIndex < friends.length){
+            console.log(currentIndex);
+            
+            let friend = friends[currentIndex];
+
+            let friendNode = document.createElement('li');
+            let friendNodeText = document.createTextNode(friend);
+            friendNode.appendChild(friendNodeText);
+
+            friendList.appendChild(friendNode);
+            currentIndex = currentIndex + 1;
+        }
+        
+    });
+
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     CreateButton();
     TextBoxButton();
     ChangingDiv();
     ChangingParagraph();
     AddName();
+    AddFriend();
 });
