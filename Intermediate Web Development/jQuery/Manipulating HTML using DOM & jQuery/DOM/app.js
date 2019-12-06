@@ -23,6 +23,22 @@ function TextBoxButton(){
     });
 }
 
+function ChangingDiv(){
+    let divHolder = document.getElementById('divlocation');
+    let newdiv = document.createElement('div');
+    newdiv.className = "hoverbox"
+
+    newdiv.addEventListener('mouseenter', function() {
+        newdiv.style.backgroundColor = "red";
+    });
+
+    newdiv.addEventListener('mouseleave', function() {
+        newdiv.style.backgroundColor = "lightcoral";
+    });
+
+    divHolder.appendChild(newdiv);
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     CreateButton();
     TextBoxButton();
