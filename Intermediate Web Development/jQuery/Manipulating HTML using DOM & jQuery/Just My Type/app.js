@@ -1,9 +1,22 @@
 let sentences = ['ten ate neite ate nee enet ite ate inet ent eate', 'Too ato too nOt enot one totA not anot tOO aNot', 'oat itain oat tain nate eate tea anne inant nean', 'itant eate anot eat nato inate eat anot tain eat', 'nee ene ate ite tent tiet ent ine ene ete ene ate'];
 let currentSentence = 0
 let currentCharacter = 0
+let numberOfMistakes = 0
+let start_time = null
+let finished_time = null
 
 function SetupSentences(){
-    
+    if (start_time && finished_time){
+
+        words = sentences[currentSentence - 1].split(" ").length
+        let ms = (finished_time - start_time);
+        let s = ms / 1000;
+        let min = s / 60;
+        let wpm = words/min - 2*numberOfMistakes;
+
+        alert(`You type ${words}/${min} - 2*${numberOfMistakes} = ${wpm} words per min`);
+    }
+
     let text = ""
 
     for (const key in sentences[currentSentence]) {
@@ -12,10 +25,13 @@ function SetupSentences(){
 
 
     $('#sentence').html(text)
+    start_time = new Date().getTime();
+
 }
 
 function HighlightChar(){
     $(`#sentence span:nth-child(${currentCharacter})`).css('background-color', 'yellow');
+    $(`#target-letter`).text(`${sentences[currentSentence][currentCharacter]}`)
 }
 
 function SetupUppercaseKeyboard(){
@@ -53,13 +69,20 @@ function SetupUppercaseKeyboard(){
 
         let charToMatch = sentences[currentSentence][currentCharacter]
         if (e.key == charToMatch){
+            $('#feedback').append('<span class="glyphicon glyphicon-ok"></span>');
             currentCharacter = currentCharacter + 1;
             if (currentCharacter >= sentences[currentSentence].length){
                 currentSentence = currentSentence + 1;
+                finished_time = new Date().getTime();
                 SetupSentences();
                 currentCharacter = 0;
+                numberOfMistakes = 0;
+                $('#feedback').html("")
+                
             }
-            
+        } else {
+            numberOfMistakes = numberOfMistakes + 1
+            $('#feedback').append('<span class="glyphicon glyphicon-remove"></span>');
         }
 
 
@@ -69,6 +92,7 @@ function SetupUppercaseKeyboard(){
 }
 
 $(document).ready(function(){
+    
     SetupUppercaseKeyboard();
     SetupSentences();
     HighlightChar();
