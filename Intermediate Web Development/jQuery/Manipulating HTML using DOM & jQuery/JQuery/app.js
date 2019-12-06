@@ -38,7 +38,11 @@ function ChangingParagraph() {
 }
 
 function AddName() {
-
+    $('#addNameButton').click(function(){
+        $('#addNameSpace').append(
+            '<span>Jeff Besos</span>'
+        )
+    });
 }
 
 function AddFriend() {
