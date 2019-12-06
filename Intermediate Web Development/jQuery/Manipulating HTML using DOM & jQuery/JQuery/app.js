@@ -45,8 +45,18 @@ function AddName() {
     });
 }
 
+currentIndex = 0;
+friends = ['Bob', 'Jeff', 'Jane', 'Alex', 'Sam', 'Tom']
 function AddFriend() {
+    $('#addFriendButton').click(function(){
+        if (currentIndex < friends.length){
+            friend = friends[currentIndex];
 
+            $('#friendList').append(`<li>${friend}</li>`);
+
+            currentIndex = currentIndex + 1;
+        }
+    });
 }
 
 $(document).ready(function(){
