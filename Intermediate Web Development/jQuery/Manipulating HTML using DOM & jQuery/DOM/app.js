@@ -7,7 +7,7 @@ function CreateButton(){
     button.appendChild(buttonText);
 
     button.addEventListener('click', function(){
-        alert('Hello there!')
+        alert('Hello there!');
     })
 
     buttonHolder.appendChild(button);
