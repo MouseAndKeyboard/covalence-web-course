@@ -22,3 +22,5 @@ function findAvg(a, b) {
     var answer = ( a + b) / 2;
     return answer;
 }
+
+
