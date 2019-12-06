@@ -1,15 +1,15 @@
-alert('test')
-
-
 function CreateButton() {
     $('#alertButtonHolder').append('<button class="btn btn-primary btn-lg" id="alertButton">Click Me!</button>');
-    $('#alertButton').bind('click', function(){
-        alert('Hello there!')
+    $('#alertButton').click(function(){
+        alert('Hello there!');
     }); 
 }
 
 function TextBoxButton() {
-
+    $('#textboxButton').click(function(){
+        let text = $('#textbox').val();
+        alert(text);
+    });
 }
 
 function ChangingDiv() {
