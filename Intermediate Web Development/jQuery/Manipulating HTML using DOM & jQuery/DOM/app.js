@@ -56,9 +56,23 @@ function ChangingParagraph(){
     paragraphHolder.appendChild(paragraph);
 }
 
+function AddName(){
+    let button = document.getElementById('addNameButton');
+    let nameHolder = document.getElementById('addNameSpace');
+
+    button.addEventListener('click', function() {
+        let name = "Jeff Besos";
+        let nameSpan = document.createElement('span');
+        let nameSpanText = document.createTextNode(name);
+        nameSpan.appendChild(nameSpanText);
+        nameHolder.appendChild(nameSpan);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     CreateButton();
     TextBoxButton();
     ChangingDiv();
     ChangingParagraph();
+    AddName();
 });
