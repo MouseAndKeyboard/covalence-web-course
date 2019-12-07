@@ -1,0 +1,18 @@
+#draw-zone {
+    position: relative;
+    background-color: azure;
+    width: auto;
+    height: 100vh;
+
+    -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.35);
+    -moz-box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.35);
+    box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.35);
+}
+
+#sidepanel {
+    position: fixed;
+    right: 3em;
+    top: 5em;
+    height: 75vh;
+    width: 15vw;
+}

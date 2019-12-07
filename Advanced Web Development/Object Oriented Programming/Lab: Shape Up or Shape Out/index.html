@@ -8,13 +8,190 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <script src="app.js"></script>
-        <link rel="stylesheet" href="style.css">
-    <title>Hello, world!</title>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Shape Up</title>
 </head>
 
 <body>
-    <h1>Hello, world!</h1>
+
+    <div class="container">
+        <div class="card mt-3 shadow">
+            <div class="card-header">
+                Insert a new shape
+            </div>
+            <div class="card-body bg-primary">
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="float-left">Rectangle</p>
+                                </div>
+                                <div class="col"><button class="btn btn-primary float-right">Insert</button></div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form">
+                                <div class="form-group">
+                                    <label for="rectwidth" class="sr-only">Width</label>
+                                    <input type="text" name="rectWidth" id="rectWidth" class="form-control"
+                                        placeholder="width">
+                                </div>
+                                <div class="form-group">
+
+                                    <label for="rectHeight" class="sr-only">Height</label>
+                                    <input type="text" name="rectHeight" id="rectHeight" class="form-control"
+                                        placeholder="height">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="float-left">Square</p>
+                                </div>
+                                <div class="col"><button class="btn btn-primary float-right">Insert</button></div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form">
+                                <div class="form-group">
+                                    <label for="squareSideLength" class="sr-only">Square Side Length</label>
+                                    <input type="text" name="squareSideLength" id="squareSideLength"
+                                        class="form-control" placeholder="Side Length">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="float-left">Circle</p>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-primary float-right">Insert</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form">
+                                <div class="form-group">
+                                    <label for="circleRadius" class="sr-only">Circle Radius</label>
+                                    <input type="text" name="circleRadius" id="circleRadius" class="form-control"
+                                        placeholder="Radius">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="float-left">Triangle</p>
+                                </div>
+                                <div class="col"><button class="btn btn-primary float-right">Insert</button></div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form">
+                                <div class="form-group">
+                                    <label for="triangleHeight" class="sr-only">Triangle Height</label>
+                                    <input type="text" name="triangleHeight" id="triangleHeight" class="form-control"
+                                        placeholder="Height">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="draw-zone">
+
+        </div>
+    </div>
+
+    <div class="card" id="sidepanel">
+        <div class="card-header">
+            Shape Info
+        </div>
+
+        <div id="shapeinfobox">
+
+            <div class="m-2">
+                <div class="row">
+                    <div class="col">
+                        <p class="font-weight-bold">
+                            Name:
+                        </p>
+                    </div>
+                    <div class="col">test</div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="font-weight-bold">
+                            Width:
+                        </p>
+                    </div>
+                    <div class="col">test</div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="font-weight-bold">
+                            Height:
+                        </p>
+                    </div>
+                    <div class="col">test</div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="font-weight-bold">
+                            Radius:
+                        </p>
+                    </div>
+                    <div class="col">test</div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="font-weight-bold">
+                            Area:
+                        </p>
+                    </div>
+                    <div class="col">test</div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="font-weight-bold">
+                            Perimeter:
+                        </p>
+                    </div>
+                    <div class="col">test</div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
