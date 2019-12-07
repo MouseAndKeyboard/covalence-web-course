@@ -1,12 +1,23 @@
-#draw-zone {
+#draw-zone-bg {
+    display: flex;
     position: relative;
     background-color: azure;
     width: auto;
     height: 100vh;
 
+    justify-content: center;
+
     -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.35);
     -moz-box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.35);
     box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.35);
+}
+
+#draw-zone {
+    position: relative;
+    background-color: bisque;
+    width: 80%;
+    height: 80%;
+    align-self: center;
 }
 
 #sidepanel {
@@ -15,4 +26,11 @@
     top: 5em;
     height: 75vh;
     width: 15vw;
+}
+
+.test {
+
+    height: 10em;
+    width: 10em;
+    background-color: black;
 }
