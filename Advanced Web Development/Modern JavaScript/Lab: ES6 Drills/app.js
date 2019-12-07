@@ -30,5 +30,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let {exponent, product} = statCalc(5, 2);
     console.log(`Exponent is: ${exponent}. Product is: ${product}`);
+   
     
+    function spread(name, location, favFood) {
+        console.log(name, location, favFood);
+        
+    }
+
+    let arr = ["Jeff", "USA", "Tacos"];
+    spread(...arr)
+
+    function toCharArray(string) {
+        return [...string];
+    }
+
+    console.log(toCharArray("testing 123"))
+
 });
