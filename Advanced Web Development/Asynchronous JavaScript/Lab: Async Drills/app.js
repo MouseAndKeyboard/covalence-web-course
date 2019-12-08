@@ -32,6 +32,22 @@ function done() {
     log("Job's done!")
 }
 
+let lunchTime = true;
+
+function orderMeSomeFood() {
+    return new Promise((resolve, reject) => {
+        if (lunchTime) {
+            resolve({
+                lunch: "Apple",
+                drink: "Water"
+            });
+        } else {
+            reject(new Error("Not lunch time"))
+        }
+    });
+
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
     // log("hello world");
@@ -41,5 +57,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // getWords('test', 'ing', '12', '3 :)')
 
-    countdown(5, done);
+    // countdown(5, done);
+
+    orderMeSomeFood()
+        .then(lunch => {
+            log(lunch);
+        }).catch(err => {
+            log(err);
+        });
 });
