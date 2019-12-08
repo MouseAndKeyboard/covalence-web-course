@@ -25,7 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    let t2 = document.addEventListener('click', () => {
+    let trigger2 = document.getElementById('trigger2')
+    trigger2.addEventListener('click', () => {
 
         Promise.all([
             slowEcho("Howdy Partner (1s)", 1000),
@@ -37,6 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(err);
         });
 
+    });
+
+    let trigger3 = document.getElementById('trigger3')
+    trigger3.addEventListener('click', async () => {
+        let message = await slowEcho("async/await test", 2000);
+        console.log(message);
     });
 
 });
