@@ -42,8 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let trigger3 = document.getElementById('trigger3')
     trigger3.addEventListener('click', async () => {
-        let message = await slowEcho("async/await test", 2000);
-        console.log(message);
+        try {
+            let message = await slowEcho("async/await test", 2000);
+            console.log(message);
+        } catch (error) {
+            // if the promise rejects
+            console.log(error);
+        }
     });
 
 });
