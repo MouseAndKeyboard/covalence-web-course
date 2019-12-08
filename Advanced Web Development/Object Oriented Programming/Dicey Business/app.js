@@ -32,7 +32,7 @@ class Die {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    test
 
     let addDieBtn = document.getElementById('AddDie');
     addDieBtn.addEventListener('click', () => {

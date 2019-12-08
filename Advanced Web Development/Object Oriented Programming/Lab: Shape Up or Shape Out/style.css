@@ -14,9 +14,9 @@
 
 #draw-zone {
     position: relative;
-    background-color: bisque;
-    width: 80%;
-    height: 80%;
+    background-color: azure;
+    width: 70%;
+    height: 70%;
     align-self: center;
 }
 
@@ -28,9 +28,28 @@
     width: 15vw;
 }
 
-.test {
+.circle {
+    border-radius: 50%;
+}
 
-    height: 10em;
-    width: 10em;
+.triangle {
+    width: 0;
+    height: 0;
+
+    border-bottom-color:black;
+    border-bottom-style: solid;
+
+    border-right-color: azure;
+    border-right-style: solid;
+
+}
+
+.shape {
+    cursor: pointer;
+    position: absolute;
     background-color: black;
+}
+
+.rectangle {
+
 }
