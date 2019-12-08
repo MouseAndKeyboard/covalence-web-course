@@ -2,10 +2,14 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    slowMath.add(6, 2)
+    slowMath.add(1, 1)
         .then(result => {
             console.log(result);
             return slowMath.multiply(result, 2);
+        })
+        .then(result => {
+            console.log(result);
+            return slowMath.divide(result, 4)
         })
         .then(result => {
             console.log(result);
@@ -37,6 +41,5 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(err => {
             console.log(err);
         });
-
 
 });
