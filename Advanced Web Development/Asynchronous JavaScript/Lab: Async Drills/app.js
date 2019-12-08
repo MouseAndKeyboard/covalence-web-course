@@ -15,13 +15,31 @@ function getWords(m1, m2, m3, m4) {
     }, 3000);
 }
 
+function countdown(num, callback) {
+    console.log(num);
+    if (num <= 0) {
+        callback();
+        return;
+    } else {
+        setTimeout(() => {
+            num = num - 1;
+            countdown(num, callback);
+        }, 1000);
+    }
+}
+
+function done() {
+    log("Job's done!")
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    log("hello world");
+    // log("hello world");
     // setTimeout(() => {
     //     log("hello universe");
     // }, 3000);
 
-    getWords('test', 'ing', '12', '3 :)')
+    // getWords('test', 'ing', '12', '3 :)')
 
+    countdown(5, done);
 });
