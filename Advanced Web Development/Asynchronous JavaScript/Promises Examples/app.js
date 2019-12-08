@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Promise pyramid of doom
+    // BAD
     getWordOfTheDay()
-    .then((word) => {
+    .then(word => {
         console.log(`The word of the day is: ${word}`);
         console.log(`Sending to friend`);
         tellFriend(word)
@@ -23,5 +24,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }, err => {
         console.log(err);
     })
+
+    // Promise chain
+    // GOOD
+    getWordOfTheDay()
+    .then( word => {
+        console.log(`The word of the day is: ${word}`);
+        console.log(`Sending to friend`);
+        return tellFriend(word);
+    })
+    .then( response => {
+        console.log(`Friend responded: ${response}`);
+    })
+    .catch( err => {
+        console.log(err);
+    });
 
 });
