@@ -7,11 +7,13 @@ const Welcome = props => {
 }
 
 const App = () => {
-  let element = <div>
-    <Welcome name="World" />
-    <Welcome name="Jeff" />
-    <Welcome name="Howdy" />
-  </div>;
+  let element = (
+    <div>
+      <Welcome name="World" />
+      <Welcome name="Jeff" />
+      <Welcome name="Howdy" />
+    </div> 
+  );
   return element;
 }
 
