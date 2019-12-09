@@ -11,9 +11,14 @@ class App extends Component {
       name: "Jeff Besos",
       items: [{value: 'a', id: 1}, {value: 'b', id: 2}, {value: 'c', id: 3} ]
     }
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+
   }
 
-  handleInputChange = name => this.setState({ name });
+  handleInputChange(name){
+    this.setState({ name });
+  }
 
   render(){
 
