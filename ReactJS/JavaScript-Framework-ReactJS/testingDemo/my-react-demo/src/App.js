@@ -3,7 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 
 const App = () => {
-  let element = <h1>Welcome to React</h1>;
+  let element = <div>
+    <h1>Hello world!</h1>
+    <input type="text" placeholder="Hi there!" />
+  </div>;
   return element;
 }
 
