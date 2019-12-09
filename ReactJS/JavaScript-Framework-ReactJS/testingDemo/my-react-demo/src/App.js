@@ -1,19 +1,21 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import comment from './components/Comment'
-
-const Welcome = props => {
-  return <h1>Hello, {props.name}</h1>
-}
+import Comment from './components/Comment'
 
 const App = () => {
-  let element = (
+
+  let element = <h1>Welcome to React</h1>;
+  
+  return (
     <div>
-      <comment name="World" />
-    </div> 
+      {element}
+      <Comment
+          author={ { name: "Jeff Besos", avatarUrl: "http://www.gstatic.com/tv/thumb/persons/532529/532529_v9_bb.jpg"} }
+          text="How's it going?"
+        /> 
+    </div>
   );
-  return element;
 }
 
 export default App;
