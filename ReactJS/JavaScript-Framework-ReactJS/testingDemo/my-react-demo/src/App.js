@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Comment from './components/Comment'
 
@@ -8,17 +7,21 @@ class App extends Component {
     super(props);
 
     this.state = {
-
+      name: "Jeff Besos"
     }
   }
 
   render(){
-    let element = <h1>Welcome to React</h1>;
     return (
       <div>
-        {element}
+        <h1>Welcome to React</h1>
+        <input 
+          type="text" 
+          placeholder="What's your name?"
+          onChange={event => this.setState({name: event.target.value}) }
+           />
         <Comment
-            author={ { name: "Jeff Besos", avatarUrl: "http://www.gstatic.com/tv/thumb/persons/532529/532529_v9_bb.jpg"} }
+            author={ { name: this.state.name, avatarUrl: "http://www.gstatic.com/tv/thumb/persons/532529/532529_v9_bb.jpg"} }
             text="How's it going?"
           /> 
       </div>
