@@ -1,21 +1,19 @@
 import React from 'react';
+import UserInfo from './UserInfo';
 
-function Comment(props) {
+const Comment = props => {
     return (
         <div className="Comment">
-            <div className="UserInfo">
-                <img src={props.author.avatarUrl} alt={props.author.name} className="Avatar" />
-                <div className="UserInfo-name">
-                    {props.author.name}
-                </div>
-            </div>
+            <UserInfo author={}/>
             <div className="Comment-text">
                 {props.text}
             </div>
             <div className="Comment-date">
-            
+
             </div>
 
         </div>
     )
 }
+
+export default Comment;
