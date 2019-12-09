@@ -1,11 +1,13 @@
 import React from 'react';
 
+import Avatar from './Avatar';
+
 const UserInfo = props => {
     return (
         <div className="UserInfo">
-            <img src={props.author.avatarUrl} alt={props.author.name} className="Avatar" />
+            <Avatar user={props.user}/>
             <div className="UserInfo-name">
-                {props.author.name}
+                {props.user.name}
             </div>
         </div>
     );
