@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const Page1 = (props) => {
-    return (
-        <h1>This is page 1</h1>
-    );
+class Page1 extends Component {
+    render() {
+        return (
+            <h1>This is Page 1</h1>
+        );
+    }
 }
 
 export default Page1;
