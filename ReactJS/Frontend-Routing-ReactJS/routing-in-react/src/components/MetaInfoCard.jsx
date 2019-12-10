@@ -4,7 +4,7 @@ const MetaInfoCard = (props) => {
     // props.info = [{l, r}, {l, r}]
     let elements = props.info.map(({left, right}) => {
         return (
-            <div className="row">
+            <div className="row" key={left}>
                 <div className="col text-right">
                     {left}
                 </div>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import Home from './Home'
 import FilmsPage from './FilmsPage';
 import PeoplePage from './PeoplePage';
+import SpecificFilmPage from './SpecificFilmPage';
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
 
                     <Route exact path="/" component={Home} />
                     <Route exact path="/films/" component={FilmsPage} />
+                    <Route path="/films/:id" component={SpecificFilmPage} />
                     <Route exact path="/people/" component={PeoplePage} />
                 </Fragment>
             </Router>

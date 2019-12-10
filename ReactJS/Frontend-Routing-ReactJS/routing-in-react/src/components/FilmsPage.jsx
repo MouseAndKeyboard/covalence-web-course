@@ -33,7 +33,8 @@ class FilmsPage extends Component {
 
             let cards = this.state.films.map((item) => {
                 return <FilmCard 
-                        key={item.id} 
+                        key={item.id}
+                        id={item.id}
                         title={item.title}
                         description={item.description}
                         director={item.director}
