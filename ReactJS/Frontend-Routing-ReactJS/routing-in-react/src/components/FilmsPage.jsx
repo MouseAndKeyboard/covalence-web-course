@@ -35,7 +35,11 @@ class FilmsPage extends Component {
                 return <FilmCard 
                         key={item.id} 
                         title={item.title}
-                        description={item.description} />
+                        description={item.description}
+                        director={item.director}
+                        producer={item.producer}
+                        release_date={item.release_date}
+                        rt_score={item.rt_score} />
             });
 
             return (

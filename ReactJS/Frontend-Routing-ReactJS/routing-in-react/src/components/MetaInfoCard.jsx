@@ -16,7 +16,7 @@ const MetaInfoCard = (props) => {
     });
 
     return (
-        <div className="card">
+        <div className="card bg-transparent border-secondary">
             <div className="grid">
                 {elements}
             </div>
