@@ -8,12 +8,13 @@ class App extends Component {
         super(props);
 
         this.state = {
-            load: false,
+            loading: false,
             movies: [],
             success: 0
         }
 
         this.loadFilms = this.loadFilms.bind(this);
+        this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
     loadFilms(){
@@ -22,14 +23,25 @@ class App extends Component {
         .then(movies => {
             this.setState({movies});
             this.setState({success: 1});
+            this.setState({loading: false});
             }
         ).catch(err => {
             this.setState({success: -1})
+            this.setState({loading: false});
         });
     }
 
+    handleButtonClick(){
+        this.setState({loading: true})
+        this.loadFilms();
+    }
+
     render() {
-        
+        if (this.state.loading === true) {
+            return (
+                <h3>Loading...</h3>
+            );
+        }
         
         if (this.state.success === 1){
             let items = this.state.movies.map(item => {
@@ -53,13 +65,16 @@ class App extends Component {
         else if (this.state.success === -1){
             return(
                 <div class="alert alert-warning" role="alert">
-                    Could not load content...
+                    <h5>Could not load content...</h5>
+                    <button className="btn btn-primary" onClick={this.handleButtonClick}>
+                        Try again
+                    </button>
                 </div>
             );
         }
         else {
             return(
-                <button className="btn btn-primary" onClick={this.loadFilms}>
+                <button className="btn btn-primary" onClick={this.handleButtonClick}>
                     Load film data
                 </button>
             );
