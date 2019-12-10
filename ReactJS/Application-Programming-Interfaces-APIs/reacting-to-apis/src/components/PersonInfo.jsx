@@ -1,5 +1,8 @@
 import React from 'react'
 
+import InfoCard from './InfoCard';
+import Card from './Card';
+
 const PersonInfo = (props) => {
     let {gender, age, eye_color, hair_color} = props; 
 

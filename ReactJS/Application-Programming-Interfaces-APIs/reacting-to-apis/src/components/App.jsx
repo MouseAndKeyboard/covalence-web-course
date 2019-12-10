@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import fetch from 'isomorphic-fetch';
 
-import MovieInfo from './MovieInfo';
+import MovieCards from './MovieCards';
+import PeopleCards from './PeopleCards';
 
 class App extends Component {
     constructor(props) {
@@ -10,30 +11,55 @@ class App extends Component {
         this.state = {
             loading: false,
             movies: [],
+            people: [],
+            display: "none",
             success: 0
         }
 
+        this.loadPeople = this.loadPeople.bind(this);
         this.loadFilms = this.loadFilms.bind(this);
-        this.handleButtonClick = this.handleButtonClick.bind(this);
+        this.handleMovieButtonClick = this.handleMovieButtonClick.bind(this);
+        this.handlePeopleButtonClick = this.handlePeopleButtonClick.bind(this);
     }
 
-    loadFilms(){
+    loadFilms() {
         fetch("https://ghibliapi.herokuapp.com/films")
-        .then(response => response.json())
-        .then(movies => {
-            this.setState({movies});
-            this.setState({success: 1});
-            this.setState({loading: false});
+            .then(response => response.json())
+            .then(movies => {
+                this.setState({ movies, movies,
+                                success: 1,
+                                loading: false,
+                                display: "movies" });
             }
-        ).catch(err => {
-            this.setState({success: -1})
-            this.setState({loading: false});
-        });
+            ).catch(err => {
+                this.setState({ success: -1,
+                                loading: false });
+            });
     }
 
-    handleButtonClick(){
-        this.setState({loading: true})
+    loadPeople() {
+        fetch("https://ghibliapi.herokuapp.com/people")
+            .then(response => response.json())
+            .then(people => {
+                this.setState({ people: people, 
+                                success: 1,
+                                loading: false,
+                                display: "people" });
+            }
+            ).catch(err => {
+                this.setState({ success: -1,
+                                loading: false });
+            });
+    }
+
+    handleMovieButtonClick() {
+        this.setState({ loading: true })
         this.loadFilms();
+    }
+
+    handlePeopleButtonClick() {
+        this.setState({ loading: true })
+        this.loadPeople();
     }
 
     render() {
@@ -42,44 +68,43 @@ class App extends Component {
                 <h3>Loading...</h3>
             );
         }
-        
-        if (this.state.success === 1){
-            let items = this.state.movies.map(item => {
-                return (<MovieInfo 
-                    title={item.title}
-                    description={item.description}
-                    director={item.director}
-                    producer={item.producer}
-                    releaseDate={item.release_date}
-                    rt={item.rt_score}
-                    key={item.id}
-                />);
-            }); 
 
-            return (
-                <div>
-                    {items}
-                </div>
-            );
+        if (this.state.success === 1) {
+
+            if (this.state.display === "movies") {
+                return <MovieCards movies={this.state.movies} />
+            }
+            else if (this.state.display === "people") {
+                return <PeopleCards people={this.state.people} />
+            }
+            else {
+                return <div className="alert alert-warning">Something went wrong...</div>
+            }
         }
-        else if (this.state.success === -1){
-            return(
+        else if (this.state.success === -1) {
+            return (
                 <div class="alert alert-warning" role="alert">
                     <h5>Could not load content...</h5>
-                    <button className="btn btn-primary" onClick={this.handleButtonClick}>
+                    <button className="btn btn-primary" onClick={this.handleMovieButtonClick}>
                         Try again
                     </button>
                 </div>
             );
         }
         else {
-            return(
-                <button className="btn btn-primary" onClick={this.handleButtonClick}>
-                    Load film data
-                </button>
+            return (
+                <React.Fragment>
+                    <button className="btn btn-primary" onClick={this.handleMovieButtonClick}>
+                        Load film data
+                    </button>
+                    <button className="btn btn-primary" onClick={this.handlePeopleButtonClick}>
+                        Load character data
+                    </button>
+                </React.Fragment>
+
             );
         }
-        
+
     }
 }
 
