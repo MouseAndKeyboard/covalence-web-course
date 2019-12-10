@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import fetch from 'isomorphic-fetch';
 import Loading from './Loading';
 import PageBanner from './PageBanner';
+import SpecificFilmCard from './SpecificFilmCard';
 
 class SpecificFilmPage extends Component {
     constructor(props) {
@@ -32,18 +33,16 @@ class SpecificFilmPage extends Component {
                 <Loading message="Loading..." />
             );
         } else {
-
             return (
                 <div className="container">
                     <PageBanner title={this.state.film_data.title}/>
-                    <div className="card text-white bg-secondary card-text">
-                        <div className="card-header bg-dark">
-
-                        </div>
-                        <div className="card-body">
-                            
-                        </div>
-                    </div>
+                    <SpecificFilmCard 
+                        director={this.state.film_data.director}
+                        producer={this.state.film_data.producer}
+                        release_date={this.state.film_data.release_date}
+                        rt_score={this.state.film_data.rt_score}
+                        people={this.state.film_data.people}
+                        />
                 </div>
             );
         }

@@ -4,6 +4,7 @@ import Home from './Home'
 import FilmsPage from './FilmsPage';
 import PeoplePage from './PeoplePage';
 import SpecificFilmPage from './SpecificFilmPage';
+import SpecficPersonPage from './SpecificPersonPage';
 
 class App extends Component {
 
@@ -36,6 +37,7 @@ class App extends Component {
                     <Route exact path="/films/" component={FilmsPage} />
                     <Route path="/films/:id" component={SpecificFilmPage} />
                     <Route exact path="/people/" component={PeoplePage} />
+                    <Route path="/people/:id" component={SpecficPersonPage} />
                 </Fragment>
             </Router>
         );
