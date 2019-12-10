@@ -8,36 +8,63 @@ class App extends Component {
         super(props);
 
         this.state = {
-            movies: []
+            load: false,
+            movies: [],
+            success: 0
         }
+
+        this.loadFilms = this.loadFilms.bind(this);
     }
 
-    componentDidMount(){
+    loadFilms(){
         fetch("https://ghibliapi.herokuapp.com/films")
         .then(response => response.json())
-        .then(movies => this.setState({movies}));
+        .then(movies => {
+            this.setState({movies});
+            this.setState({success: 1});
+            }
+        ).catch(err => {
+            this.setState({success: -1})
+        });
     }
 
     render() {
+        
+        
+        if (this.state.success === 1){
+            let items = this.state.movies.map(item => {
+                return (<MovieInfo 
+                    title={item.title}
+                    description={item.description}
+                    director={item.director}
+                    producer={item.producer}
+                    releaseDate={item.release_date}
+                    rt={item.rt_score}
+                    key={item.id}
+                />);
+            }); 
 
-        let items = this.state.movies.map(item => {
-            return (<MovieInfo 
-                title={item.title}
-                description={item.description}
-                director={item.director}
-                producer={item.producer}
-                releaseDate={item.release_date}
-                rt={item.rt_score}
-                key={item.id}
-            />);
-        }); 
-
-
-        return (
-            <div className="container">
-                {items}
-            </div>
-        );
+            return (
+                <div>
+                    {items}
+                </div>
+            );
+        }
+        else if (this.state.success === -1){
+            return(
+                <div class="alert alert-warning" role="alert">
+                    Could not load content...
+                </div>
+            );
+        }
+        else {
+            return(
+                <button className="btn btn-primary" onClick={this.loadFilms}>
+                    Load film data
+                </button>
+            );
+        }
+        
     }
 }
 
