@@ -41,6 +41,7 @@ class SpecificPersonPage extends Component {
                         age={this.state.person_data.age}
                         eye_color={this.state.person_data.eye_color}
                         hair_color={this.state.person_data.hair_color}
+                        films={this.state.person_data.films}
                         />
                 </div>
             );
