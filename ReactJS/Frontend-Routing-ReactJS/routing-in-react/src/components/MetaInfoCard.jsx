@@ -8,7 +8,7 @@ const MetaInfoCard = (props) => {
                 <div className="col text-right">
                     {left}
                 </div>
-                <div className="col">
+                <div className="col text-left">
                     {right}
                 </div>
             </div>
