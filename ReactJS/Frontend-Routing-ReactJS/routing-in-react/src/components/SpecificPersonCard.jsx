@@ -1,16 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
 import MetaInfoCard from './MetaInfoCard';
 
-const PersonCard = (props) => {
+
+const SpecificPersonCard = (props) => {
     let metaInfo = [
         { left: "Gender:", right: props.gender },
         { left: "Age:", right: props.age },
         { left: "Eye colour:", right: props.eye_color },
         { left: "Hair colour:", right: props.hair_color },
     ]
-
-    let link = `/people/${props.id}`;
 
     return (
 
@@ -20,12 +18,9 @@ const PersonCard = (props) => {
             </div>
             <div className="card-footer text-center">
                 <MetaInfoCard info={metaInfo} />
-                <Link to={link}>
-                    <button className="btn btn-success stretched-link">Read more...</button>
-                </Link>
             </div>
         </div>
     );
 }
 
-export default PersonCard;
+export default SpecificPersonCard;

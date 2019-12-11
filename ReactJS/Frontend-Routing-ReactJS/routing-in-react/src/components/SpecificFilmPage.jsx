@@ -33,6 +33,11 @@ class SpecificFilmPage extends Component {
                 <Loading message="Loading..." />
             );
         } else {
+
+            if (!this.state.film_data.people){
+                alert("yeet");
+            }
+            
             return (
                 <div className="container">
                     <PageBanner title={this.state.film_data.title}/>

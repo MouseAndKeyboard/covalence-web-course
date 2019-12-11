@@ -12,7 +12,10 @@ const SpecificFilmCard = (props) => {
     ]
 
     let characterLinks = props.people.map(item => {
+
+        console.log(item);
         
+
         const url = item.split('/');
         const id = url[url.length - 1];
         
@@ -23,7 +26,7 @@ const SpecificFilmCard = (props) => {
             );
         } else {
             return (
-                <div></div>
+                <div key={id}></div>
             );
         }
 
