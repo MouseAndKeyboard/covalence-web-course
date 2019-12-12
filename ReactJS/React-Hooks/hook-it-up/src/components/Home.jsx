@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
 const Home = (props) => {
     const [users, setUsers] = useState([]);
@@ -14,6 +15,7 @@ const Home = (props) => {
     }, []);
 
     let cards = users.map(user => {
+        let url = `/${user.id}/details/`
         return (
             <div key={user.id} className="row row-cols-4 row-cols-md-2">
                 <div className="col mb-4">
@@ -34,6 +36,12 @@ const Home = (props) => {
                                     {user.website}
                                 </li>
                             </ul>
+
+                        </div>
+                        <div className="card-footer">
+                            <Link to={url} className="stretched-link">
+                                View more info
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -43,7 +51,7 @@ const Home = (props) => {
 
     return (
         <div className="container">
-            { cards }
+            {cards}
         </div>
     );
 
