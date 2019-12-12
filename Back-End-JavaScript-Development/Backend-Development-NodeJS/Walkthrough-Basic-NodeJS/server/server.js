@@ -1,14 +1,35 @@
-let path = require('path');
-let fs = require('fs');
+const path = require('path');
+const fs = require('fs');
+const request = require('request');
 
-let dataPath = path.join(__dirname, '../data.json');
+const dataPath = path.join(__dirname, '../data.json');
 
-fs.readFile(dataPath, {
-    encoding: "UTF-8"
-}, (err, data) => {
-    let person = JSON.parse(data);
+request('https://ghibliapi.herokuapp.com/films/', (err, res, body) => {
+    if (err){
+        console.log(err);
+    }
 
-    console.log(person.name);
-    console.log(person.age);
+    let obj = JSON.parse(body);  
+
+    obj.forEach(item => {
+
+        console.log(item.title);
+    });
+
+    fs.writeFile(dataPath, body, err => {
+        if (err) {
+            console.log(err);
+        }
+    });
     
 });
+
+// fs.readFile(dataPath, {
+//     encoding: "UTF-8"
+// }, (err, data) => {
+//     let person = JSON.parse(data);
+
+//     console.log(person.name);
+//     console.log(person.age);
+    
+// });
