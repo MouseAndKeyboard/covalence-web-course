@@ -61,8 +61,9 @@ for (let i in persons) {
 }
 
 function getLength(word: string) {
-    let total_len : number = 0
-    for (let character of word){
+    let total_len : number = 0;
+
+    for (let index = 0; index < word.length; index++) {
         total_len++
     }
     return total_len
