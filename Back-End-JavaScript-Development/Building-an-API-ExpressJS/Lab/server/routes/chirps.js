@@ -4,7 +4,7 @@ const store = require('../chirpstore');
 let chirpsRouter = express.Router();
 
 
-chirpsRouter.get('/chirps/:id?', (req, resp) => {
+chirpsRouter.get('/:id?', (req, resp) => {
     if (req.params.id) {
         let chirp = store.GetChirp(req.params.id);
         resp.json(chirp);
@@ -14,7 +14,7 @@ chirpsRouter.get('/chirps/:id?', (req, resp) => {
     }
 });
 
-chirpsRouter.post('/chirps', (req, resp) => {
+chirpsRouter.post('/', (req, resp) => {
     store.CreateChirp({
         author: req.body.author,
         message: req.body.message
@@ -23,7 +23,7 @@ chirpsRouter.post('/chirps', (req, resp) => {
     resp.status(200);
 });
 
-chirpsRouter.delete('/chirps/:id', (req, resp) => {
+chirpsRouter.delete('/:id', (req, resp) => {
     store.DeleteChirp(
         req.params.id
     );
@@ -31,7 +31,7 @@ chirpsRouter.delete('/chirps/:id', (req, resp) => {
     resp.status(200);
 });
 
-chirpsRouter.put('/chirps/:id', (req, resp) => {
+chirpsRouter.put('/:id', (req, resp) => {
     store.UpdateChirp(
         req.params.id,
         {
