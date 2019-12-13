@@ -20,7 +20,7 @@ chirpsRouter.post('/', (req, resp) => {
         message: req.body.message
     });
 
-    resp.status(200);
+    resp.status(200).send();
 });
 
 chirpsRouter.delete('/:id', (req, resp) => {
