@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -49,3 +50,9 @@ var sam = new Snake('Sammy the Python');
 var tom = new Horse('Tommy the Palomino');
 sam.move();
 tom.move(34);
+$(document).ready(function () {
+    function Greeting(name) {
+        $('#name').html("Hello, " + name + "!");
+    }
+    Greeting("jeff");
+});
