@@ -1,16 +1,12 @@
 
-$(document).ready(() => {
-    $('#messageSend').click((evt) => {
-        evt.preventDefault();
+$('#messageSend').click((evt) => {
+    evt.preventDefault();
 
-        let toSend = {
-            author: $('#name')[0].value,
-            message: $('#message')[0].value
-        }
+    let toSend = {
+        author: $('#name')[0].value,
+        message: $('#message')[0].value
+    }
 
-        console.log(JSON.stringify(toSend));
-
-        jQuery.post('http://localhost:4000/api/chirps', JSON.stringify(toSend));
-    });
-})
+    $.ajax('/api/chirps', {contentType: "application/json; charset=utf-8", data: JSON.stringify(toSend), type: 'POST'});
+});
 
