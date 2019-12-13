@@ -6,4 +6,4 @@ router.get('/:id', (req, res) => {
     res.send('users');
 });
 
-module.exports(router);
+module.exports = router;

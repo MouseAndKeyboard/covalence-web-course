@@ -7,4 +7,4 @@ let router = express.Router();
 router.use('/chirps', chirpsRouter);
 router.use('/users', usersRouter);
 
-module.exports(router);
+module.exports = router;
