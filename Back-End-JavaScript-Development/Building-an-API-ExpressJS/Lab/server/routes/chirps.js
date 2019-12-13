@@ -14,13 +14,13 @@ chirpsRouter.get('/:id?', (req, resp) => {
 });
 
 chirpsRouter.post('/', (req, resp) => {
-    
+    let id = store.GetChirps().nextid;
     store.CreateChirp({
         author: req.body.author,
         message: req.body.message
     });
 
-    resp.sendStatus(200);
+    resp.status(200).json(id);
 });
 
 chirpsRouter.delete('/:id', (req, resp) => {
