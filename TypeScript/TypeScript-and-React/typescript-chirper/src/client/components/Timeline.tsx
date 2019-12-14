@@ -4,7 +4,7 @@ import Chirp from './Chirp'
 interface ITimelineChirp {
     user: string,
     message: string,
-    key: number
+    key: string
 }
 
 interface ITimelineState {
@@ -29,6 +29,30 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
 
     }
 
+    componentDidMount() {
+        fetch('/api/chirps')
+        .then(resp => resp.json())
+        .then(obj => {
+            let downloadedChirps: Array<ITimelineChirp> = [];
+            for (const key in obj) {
+                if (key !== "nextid") {
+                    if (obj.hasOwnProperty(key)) {
+                        const element = obj[key];
+                        
+                        downloadedChirps.push({
+                            user: element.author,
+                            message: element.message,
+                            key: key
+                        });
+                        
+                    }
+                }
+            }
+
+            this.setState({chirps: downloadedChirps});
+        });
+    }
+
     handleClick = (eventArgs: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         eventArgs.preventDefault();
 
@@ -37,7 +61,7 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
         this.state.chirps.push({
             user: this.state.name,
             message: this.state.message,
-            key: timeStamp
+            key: timeStamp.toString()
         });
 
         this.setState({chirps: this.state.chirps});       
@@ -60,10 +84,14 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
     }
 
     render() {
+        console.log(`chirps:`);
+        console.log(this.state.chirps);
+        
+        
 
         let chirps = this.state.chirps.map(chirp => {
             return (
-                <Chirp poster={chirp.user} message={chirp.message} timeStamp={chirp.key} key={chirp.key} />
+                <Chirp poster={chirp.user} message={chirp.message} key={chirp.key} />
             )
         });
 

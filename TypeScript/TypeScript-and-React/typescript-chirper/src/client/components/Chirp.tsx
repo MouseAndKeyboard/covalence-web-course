@@ -1,14 +1,14 @@
 import React from 'react'
 
 export interface IChirpProps {
-    timeStamp: number,
+    // timeStamp: string,
     poster: string,
     message: string
 }
 
 const Chirp: React.FunctionComponent<IChirpProps> = (props) => {
 
-    let d = new Date(props.timeStamp);
+    // let d = new Date(props.timeStamp);
 
     return(
         <div className="card m-1">
@@ -18,7 +18,7 @@ const Chirp: React.FunctionComponent<IChirpProps> = (props) => {
                         {props.poster}
                     </div>
                     <div className="col">
-                        {d.toDateString()}
+                        {/* {d.toDateString()} */}
                     </div>
                 </div>
                 

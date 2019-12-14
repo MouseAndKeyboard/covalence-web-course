@@ -48,6 +48,9 @@ class Timeline extends Component {
 
     render() {
 
+        console.log(this.state.chirps);
+        
+
         let chirps = this.state.chirps.map(chirp => {
             return (
                 <Chirp poster={chirp.user} message={chirp.message} timeStamp={chirp.key} key={chirp.key} />
