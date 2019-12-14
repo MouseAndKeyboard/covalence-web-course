@@ -1,47 +1,43 @@
 import * as React from 'react';
 import List from './List';
 
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Details from './Details';
 
-class App extends React.Component<IAppProps, IAppState> {
-	constructor(props: IAppProps) {
-		super(props);
-		this.state = {
-			name: null
-		};
-	}
+const App: React.SFC<IAppProps> = props => {
 
-	async componentDidMount() {
+	const [name, setName] = useState<string>('')
+
+	const getName = async () => {
 		try {
 			let r = await fetch('/api/hello');
 			let name = await r.json();
-			this.setState({ name });
+			setName(name);
 		} catch (error) {
 			console.log(error);
 		}
 	}
 
-	render() {
-		return (
-			<main className="container my-5">
-				<Router>
-					<Switch>
+	useEffect(() => {
+		getName();
+	}, [])
 
-						<Route exact path="/" component={List} />
-						<Route path="/:name" component={Details} />
-					</Switch>
-				</Router>
-				
-			</main>
-		);
-	}
+	return (
+		<main className="container my-5">
+			<h1>Hello {name}</h1>
+			<Router>
+				<Switch>
+
+					<Route exact path="/" component={List} />
+					<Route path="/:name" component={Details} />
+				</Switch>
+			</Router>
+
+		</main>
+	);
 }
 
-export interface IAppProps {}
-
-export interface IAppState {
-	name: string;
-}
+export interface IAppProps { }
 
 export default App;
