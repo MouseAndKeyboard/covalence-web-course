@@ -10,13 +10,27 @@ interface IDetailsState {
 }
 
 export default class Details extends React.Component<IDetailsProps, IDetailsState> {
-    constructor(props : IDetailsProps){
+    constructor(props: IDetailsProps) {
         super(props);
+
+        this.state = { name: this.props.match.params.name }
         
-        this.state = {name: this.props.match.params.name }
+    }
+
+    updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({name: e.target.value});
     }
 
     render() {
-    return <h1>{this.state.name}</h1>;
+        return (
+            <section>
+                <h1>{this.state.name}</h1>
+                <div className="form-group">
+                    <label htmlFor="name">Update Name</label>
+                    <input type="text" className="form-control" defaultValue={this.state.name}
+                    onChange={this.updateName}/>
+                </div>
+            </section>
+        );
     }
 }
