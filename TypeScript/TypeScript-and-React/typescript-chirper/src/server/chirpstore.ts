@@ -11,7 +11,8 @@ let getChirps = () => {
 }
 
 let getChirp = (id: number) => {
-    return Object.assign({}, chirps[id]); //create a copy and return it
+    let chirp : IChirp | {nextid: number} = Object.assign({}, chirps[id]); //create a copy and return it
+    return chirp;
 }
 
 let createChirp = (chirp: IChirp) => {
@@ -38,7 +39,7 @@ export interface IChirp {
     message: string
 }
 
-module.exports = {
+export default {
     CreateChirp: createChirp,
     DeleteChirp: deleteChirp,
     GetChirps: getChirps,
