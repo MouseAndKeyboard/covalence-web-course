@@ -1,9 +1,10 @@
-import fs from 'fs';
+import * as fs from 'fs';
+import * as path from 'path';
 let chirps: any = { nextid: 0 };
 
-if(fs.existsSync('./chirps.json')) {
+if(fs.existsSync(path.join(__dirname, './chirps.json'))) {
     
-    chirps = JSON.parse(fs.readFileSync('chirps.json').toString('UTF-8'));
+    chirps = JSON.parse(fs.readFileSync(path.join(__dirname,'./chirps.json')).toString('UTF-8'));
 }
 
 let getChirps = () => {
@@ -30,7 +31,7 @@ let deleteChirp = (id: number) => {
 }
 
 let writeChirps = () => {
-    fs.writeFileSync('chirps.json', JSON.stringify(chirps));
+    fs.writeFileSync(path.join(__dirname,'./chirps.json'), JSON.stringify(chirps));
 };
 
 export interface IChirp {

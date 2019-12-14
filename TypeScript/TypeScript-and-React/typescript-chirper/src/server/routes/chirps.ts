@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import store, {IChirp} from '../chirpstore';
 
 let chirpsRouter = express.Router();
