@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 
 class App extends React.Component<IAppProps, IAppState> {
 	constructor(props: IAppProps) {
