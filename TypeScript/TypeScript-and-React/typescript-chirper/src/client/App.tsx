@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+import Header from './components/Header';
 
 class App extends React.Component<IAppProps, IAppState> {
 	constructor(props: IAppProps) {
@@ -21,9 +22,13 @@ class App extends React.Component<IAppProps, IAppState> {
 
 	render() {
 		return (
-			<main className="container my-5">
-				<h1 className="text-primary text-center">Hello {this.state.name}!</h1>
-			</main>
+			<React.Fragment>
+				<Header />
+				<div className="container">
+					
+				</div>
+			</React.Fragment>
+			
 		);
 	}
 }
