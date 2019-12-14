@@ -3,7 +3,7 @@ const chirpRouter = require('./chirps');
 
 const apiRouter = express.Router();
 
-apiRouter.use('/', (req, resp, next) => {
+apiRouter.use('/', (req: any, resp: any, next: () => void) => {
     next();
 });
 
