@@ -1,5 +1,5 @@
 import fs from 'fs';
-let chirps = { nextid: 0 };
+let chirps: any = { nextid: 0 };
 
 if(fs.existsSync('chirps.json')) {
     
