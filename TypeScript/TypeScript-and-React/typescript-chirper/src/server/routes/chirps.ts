@@ -3,6 +3,13 @@ import store, {IChirp} from '../chirpstore';
 
 let chirpsRouter = express.Router();
 
+
+
+chirpsRouter.use('/', (req, resp, next) => {
+    console.log(req.body);
+    next();
+});
+
 chirpsRouter.get('/:id?', (req, resp) => {
     if (req.params.id) {
         let chirp = store.GetChirp(Number(req.params.id));
@@ -15,6 +22,7 @@ chirpsRouter.get('/:id?', (req, resp) => {
 
 chirpsRouter.post('/', (req, resp) => {
     let id = store.GetChirps().nextid;
+    
     store.CreateChirp({
         author: req.body.author,
         message: req.body.message
@@ -43,4 +51,4 @@ chirpsRouter.put('/:id', (req, resp) => {
     resp.sendStatus(200);
 });
 
-module.exports = chirpsRouter;
+export default chirpsRouter;

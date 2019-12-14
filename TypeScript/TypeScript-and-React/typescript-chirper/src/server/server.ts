@@ -4,6 +4,12 @@ import apiRouter from './routes';
 const app = express();
 
 app.use(express.static('public'));
+
+app.use('/', (req, _resp, next) => {
+    console.log(req.url);
+    next();
+});
+
 app.use('/api', apiRouter);
 
 const port = process.env.PORT || 3000;

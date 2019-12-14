@@ -1,8 +1,8 @@
-const express = require('express');
-const chirpRouter = require('./chirps');
+import * as express from 'express';
+import chirpRouter from './chirps';
 
 const apiRouter = express.Router();
-
+apiRouter.use(express.json());
 // apiRouter.use('/', (req: any, resp: any, next: () => void) => {
 //     next();
 // });
