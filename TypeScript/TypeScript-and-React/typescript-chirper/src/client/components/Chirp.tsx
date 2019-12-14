@@ -1,7 +1,7 @@
 import React from 'react'
 
-interface IChirpProps {
-    timeStamp: Date,
+export interface IChirpProps {
+    timeStamp: number,
     poster: string,
     message: string
 }

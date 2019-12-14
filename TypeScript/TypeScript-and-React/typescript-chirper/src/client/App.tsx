@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import Header from './components/Header';
+import Timeline from './components/Timeline';
 
 class App extends React.Component<IAppProps, IAppState> {
 	constructor(props: IAppProps) {
@@ -25,7 +26,7 @@ class App extends React.Component<IAppProps, IAppState> {
 			<React.Fragment>
 				<Header />
 				<div className="container">
-					
+					<Timeline />
 				</div>
 			</React.Fragment>
 			
