@@ -1,7 +1,7 @@
 import fs from 'fs';
 let chirps: any = { nextid: 0 };
 
-if(fs.existsSync('chirps.json')) {
+if(fs.existsSync('./chirps.json')) {
     
     chirps = JSON.parse(fs.readFileSync('chirps.json').toString('UTF-8'));
 }
