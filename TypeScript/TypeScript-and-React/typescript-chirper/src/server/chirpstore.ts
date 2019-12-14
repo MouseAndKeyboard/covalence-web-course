@@ -1,43 +1,39 @@
 import fs from 'fs';
-let chirpsStore: { chirps: Array<IChirp>, nextid: number } = { chirps: [], nextid: 0 }
+let chirps = { nextid: 0 };
 
 if(fs.existsSync('chirps.json')) {
     
-    chirpsStore = JSON.parse(fs.readFileSync('chirps.json').toString('UTF-8'));
+    chirps = JSON.parse(fs.readFileSync('chirps.json').toString('UTF-8'));
 }
 
 let getChirps = () => {
-    return Object.assign({}, chirpsStore.chirps); //create a copy and return it
+    return Object.assign({}, chirps); //create a copy and return it
 }
 
 let getChirp = (id: number) => {
-    let chirp : IChirp = Object.assign({}, chirpsStore.chirps[id]); //create a copy and return it
-    return chirp;
+    return Object.assign({}, chirps[id]); //create a copy and return it
 }
 
-let createChirp = ({author, message}: {author: string, message: string}) => {
-    let id = chirpsStore.nextid++;
-    chirpsStore.chirps.push({id, author, message});
+let createChirp = (chirp: IChirp) => {
+    chirps[chirps.nextid++] = chirp;
     writeChirps();
 };
 
 let updateChirp = (id : number, chirp: IChirp) => {
-    let index = chirpsStore.chirps.findIndex(elem => elem.id === id);
-    chirpsStore[index] = chirp;
+    chirps[id] = chirp;
     writeChirps();
 }
 
 let deleteChirp = (id: number) => {
-    delete chirpsStore[id];
+    delete chirps[id];
     writeChirps();
 }
 
 let writeChirps = () => {
-    fs.writeFileSync('chirps.json', JSON.stringify(chirpsStore));
+    fs.writeFileSync('chirps.json', JSON.stringify(chirps));
 };
 
 export interface IChirp {
-    id: number,
     author: string,
     message: string
 }
