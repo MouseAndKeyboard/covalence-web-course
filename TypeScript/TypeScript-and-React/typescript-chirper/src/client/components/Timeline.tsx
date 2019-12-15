@@ -83,6 +83,7 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
     render() {
 
         let chirps = this.state.chirps.map(chirp => {
+            
             return (
                 <Chirp poster={chirp.user} message={chirp.message} key={chirp.key} id={chirp.key} />
             )

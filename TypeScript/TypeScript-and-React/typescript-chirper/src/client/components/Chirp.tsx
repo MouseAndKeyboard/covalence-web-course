@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
+import { useHistory } from "react-router-dom";
+import {useState, useEffect} from "react";
 
 export interface IChirpProps {
     // timeStamp: string,
@@ -9,14 +11,20 @@ export interface IChirpProps {
     id: string
 }
 
-const Chirp: React.FunctionComponent<IChirpProps> = (props) => {
-
-    const deleteChirp = (event: React.MouseEvent<HTMLButtonElement>) => {
+const Chirp: React.FunctionComponent<IChirpProps> = (props: IChirpProps) => {
+   
+    let history = useHistory();
+    let deleteChirp = (event: React.MouseEvent<HTMLButtonElement>) => {
+        console.log(props.id);
+        
         $.ajax(`/api/chirps/${props.id}`, { method: "DELETE" })
         .then(() => {
-
+            history.push('/');
         })
-        .catch(() => {
+        .catch((err) => {
+            console.log(err);
+            console.log();
+            
             alert('Delete failed!');
         })
     }
