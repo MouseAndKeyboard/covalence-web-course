@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import $ from 'jquery';
 import Chirp from './Chirp'
 
 interface ITimelineChirp {
@@ -31,26 +32,26 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
 
     componentDidMount() {
         fetch('/api/chirps')
-        .then(resp => resp.json())
-        .then(obj => {
-            let downloadedChirps: Array<ITimelineChirp> = [];
-            for (const key in obj) {
-                if (key !== "nextid") {
-                    if (obj.hasOwnProperty(key)) {
-                        const element = obj[key];
-                        
-                        downloadedChirps.push({
-                            user: element.author,
-                            message: element.message,
-                            key: key
-                        });
-                        
+            .then(resp => resp.json())
+            .then(obj => {
+                let downloadedChirps: Array<ITimelineChirp> = [];
+                for (const key in obj) {
+                    if (key !== "nextid") {
+                        if (obj.hasOwnProperty(key)) {
+                            const element = obj[key];
+
+                            downloadedChirps.push({
+                                user: element.author,
+                                message: element.message,
+                                key: key
+                            });
+
+                        }
                     }
                 }
-            }
 
-            this.setState({chirps: downloadedChirps});
-        });
+                this.setState({ chirps: downloadedChirps });
+            });
     }
 
     handleClick = (eventArgs: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -64,7 +65,12 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
             key: timeStamp.toString()
         });
 
-        this.setState({chirps: this.state.chirps});       
+        this.setState({ chirps: this.state.chirps });
+
+        console.log('sending request');
+        
+        $.ajax('/api/chirps', { type: "POST", contentType: "application/json; charset=utf-8",  data: JSON.stringify({ author: this.state.name, message: this.state.message }) });
+
     }
 
     handleUsernameChange = (eventArgs: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,10 +90,6 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
     }
 
     render() {
-        console.log(`chirps:`);
-        console.log(this.state.chirps);
-        
-        
 
         let chirps = this.state.chirps.map(chirp => {
             return (
@@ -100,24 +102,24 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
                 <form className="p-3 my-2 bg-info">
                     <div className="row">
                         <div className="col">
-                            <input 
-                                type="text" 
-                                className="form-control" 
+                            <input
+                                type="text"
+                                className="form-control"
                                 placeholder="Display name"
                                 onChange={this.handleUsernameChange}
                             />
                         </div>
                         <div className="col-8">
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                placeholder="Message" 
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Message"
                                 onChange={this.handleMessageChange}
                             />
                         </div>
                         <div className="col-1 text-right">
-                            <button 
-                                className="btn btn-primary" 
+                            <button
+                                className="btn btn-primary"
                                 onClick={this.handleClick}>Send</button>
                         </div>
                     </div>
