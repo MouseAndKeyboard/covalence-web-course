@@ -21,7 +21,13 @@ const Chirp: React.FunctionComponent<IChirpProps> = (props) => {
                         {props.poster}
                     </div>
                     <div className="col d-flex flex-row-reverse">
-                        <Link to={link}><button className="btn btn-secondary">Edit message</button></Link>
+                        <Link to={{
+                            pathname: link,
+                            state: {
+                                defaultMessage: props.message,
+                                author: props.poster
+                            }
+                        }}><button className="btn btn-secondary">Edit message</button></Link>
                     </div>
                 </div>
                 
