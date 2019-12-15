@@ -27,50 +27,41 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
             name: "",
             message: ""
         }
+    }
 
+    loadChirps() {
+        fetch('/api/chirps')
+        .then(resp => resp.json())
+        .then(obj => {
+            let downloadedChirps: Array<ITimelineChirp> = [];
+            for (const key in obj) {
+                if (key !== "nextid") {
+                    if (obj.hasOwnProperty(key)) {
+                        const element = obj[key];
+
+                        downloadedChirps.push({
+                            user: element.author,
+                            message: element.message,
+                            key: key
+                        });
+
+                    }
+                }
+            }
+
+            this.setState({ chirps: downloadedChirps });
+        });
     }
 
     componentDidMount() {
-        fetch('/api/chirps')
-            .then(resp => resp.json())
-            .then(obj => {
-                let downloadedChirps: Array<ITimelineChirp> = [];
-                for (const key in obj) {
-                    if (key !== "nextid") {
-                        if (obj.hasOwnProperty(key)) {
-                            const element = obj[key];
-
-                            downloadedChirps.push({
-                                user: element.author,
-                                message: element.message,
-                                key: key
-                            });
-
-                        }
-                    }
-                }
-
-                this.setState({ chirps: downloadedChirps });
-            });
+        this.loadChirps();
     }
 
     handleClick = (eventArgs: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         eventArgs.preventDefault();
-
-        let timeStamp = (new Date()).getTime();
-
-        this.state.chirps.push({
-            user: this.state.name,
-            message: this.state.message,
-            key: timeStamp.toString()
-        });
-
-        this.setState({ chirps: this.state.chirps });
-
-        console.log('sending request');
         
         $.ajax('/api/chirps', { type: "POST", contentType: "application/json; charset=utf-8",  data: JSON.stringify({ author: this.state.name, message: this.state.message }) });
-
+        this.loadChirps();
     }
 
     handleUsernameChange = (eventArgs: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,7 +84,7 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
 
         let chirps = this.state.chirps.map(chirp => {
             return (
-                <Chirp poster={chirp.user} message={chirp.message} key={chirp.key} />
+                <Chirp poster={chirp.user} message={chirp.message} key={chirp.key} id={chirp.key} />
             )
         });
 

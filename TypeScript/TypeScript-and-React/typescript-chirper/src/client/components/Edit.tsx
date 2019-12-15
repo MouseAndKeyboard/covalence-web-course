@@ -1,11 +1,26 @@
 import React from 'react';
 import Header from './Header';
 import Timeline from './Timeline';
+import { RouteComponentProps } from  'react-router-dom';
 
-const Home: React.FunctionComponent = (p) => {
-    return (
-        <h1>Hello world</h1>
-    );
+interface IEditProps extends RouteComponentProps<{id: string}> {
+
 }
 
-export default Home;
+interface IEditState {
+
+}
+
+
+export default class Edit extends React.Component<IEditProps, IEditState>  {
+    constructor(props : IEditProps){
+        super(props);
+    }
+
+    render() {
+        return (
+            <h1>{this.props.match.params.id}</h1>
+        );
+    }
+
+}

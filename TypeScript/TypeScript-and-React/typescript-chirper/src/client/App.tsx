@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
-import Header from './components/Header';
-import Timeline from './components/Timeline';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+
 import Home from './components/Home';
 import Edit from './components/Edit';
 
@@ -13,16 +12,14 @@ class App extends React.Component<IAppProps, IAppState> {
 	render() {
 		return (
 			<BrowserRouter>
-				<Route path="/" component={Home} />
-				<Route path="/:id/edit" component={Edit} />
+				<Route path="/edit/:id" component={Edit} />
+				<Route exact path="/" component={Home} />
 			</BrowserRouter>
-			
-			
 		);
 	}
 }
 
-export interface IAppProps {}
+export interface IAppProps { }
 
 export interface IAppState {
 
