@@ -7,7 +7,7 @@ const Header: React.FunctionComponent = (props) => {
 
             <div className="container">
                 <Link to="/">
-                    <img src="banner.png" width="25%" height="25%" alt="Chirper" />
+                    <img src="../../../banner.png" width="25%" height="25%" alt="Chirper" />
                 </Link>
 
             </div>
