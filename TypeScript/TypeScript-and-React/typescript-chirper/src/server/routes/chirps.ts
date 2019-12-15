@@ -5,7 +5,6 @@ let chirpsRouter = express.Router();
 
 
 chirpsRouter.use('/', (req, resp, next) => {
-    console.log(req.body);
     next();
 });
 
