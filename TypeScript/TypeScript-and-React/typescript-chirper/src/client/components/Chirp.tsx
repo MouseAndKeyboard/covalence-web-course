@@ -19,7 +19,7 @@ const Chirp: React.FunctionComponent<IChirpProps> = (props: IChirpProps) => {
         
         $.ajax(`/api/chirps/${props.id}`, { method: "DELETE" })
         .then(() => {
-            history.push('/');
+            history.replace('/');
         })
         .catch((err) => {
             console.log(err);
