@@ -52,7 +52,7 @@ class Edit extends React.Component<IEditProps, IEditState>  {
             case 1:
                 btn = (<button className="btn btn-success" onClick={this.props.history.goBack}>Go back</button>);
             case -1:
-                btn = (<button className="btn btn-fail" onClick={this.props.history.goBack}>Go back</button>);
+                btn = (<button className="btn btn-danger" onClick={this.props.history.goBack}>Go back</button>);
             default:
                 btn = (<button className="btn btn-warning" onClick={this.props.history.goBack}>Go back</button>);
         }
