@@ -30,7 +30,6 @@ class Edit extends React.Component<IEditProps, IEditState>  {
     updateMessage = (event: React.MouseEvent<HTMLButtonElement>) => {
         const data = JSON.stringify(
             {
-                author: this.state.author,
                 message: this.state.text
             }
         )
@@ -41,7 +40,7 @@ class Edit extends React.Component<IEditProps, IEditState>  {
             })
             .catch(err => {
                 this.setState({ success: -1 });
-            })
+            });
     }
 
     render() {
