@@ -9,7 +9,7 @@ const deleteOne = async (chirpid: number) => {
     return Query("DELETE FROM Chirps WHERE id = ?;", [chirpid]);
 }
 const updateOne = async (chirpid: number, userid: number, text: string) => {
-    return Query("UPDATE Chirps SET id=?, authorid=?, message=?;", [chirpid, userid, text]);
+    return Query("UPDATE Chirps SET authorid=?, message=? WHERE id=?;", [userid, text, chirpid]);
 }
 
 export default {
