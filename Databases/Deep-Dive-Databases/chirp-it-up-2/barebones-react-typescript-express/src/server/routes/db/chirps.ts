@@ -2,8 +2,8 @@ import { Query } from './index';
 
 const all = async () => Query('SELECT * FROM Chirps');
 const one = async (id: number) => Query('SELECT * FROM Chirps WHERE id = ?;', [id])
-const insertOne = async (userid: number, text: string) => {
-    return Query("INSERT INTO Chirps(authorid, message) VALUES (?, ?);", [userid, text]);
+const insertOne = async (username: string, text: string) => {
+    return Query("CALL spCreateMessage(?, ?);", [username, text]);
 }
 const deleteOne = async (chirpid: number) => {
     return Query("DELETE FROM Chirps WHERE id = ?;", [chirpid]);
