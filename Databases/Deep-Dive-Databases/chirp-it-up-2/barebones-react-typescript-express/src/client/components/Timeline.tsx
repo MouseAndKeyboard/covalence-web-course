@@ -6,6 +6,7 @@ interface ITimelineChirp {
     id: number
     authorid: number,
     message: string,
+    author: string,
     _created: Date
 }
 
@@ -69,9 +70,8 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
     render() {
 
         let chirps = this.state.chirps.map(chirp => {
-            
             return (
-                <Chirp poster={chirp.authorid.toString()} message={chirp.message} key={chirp.id} id={chirp.id.toString()} />
+                <Chirp poster={chirp.author} message={chirp.message} key={chirp.id} id={chirp.id.toString()} />
             )
         });
 
