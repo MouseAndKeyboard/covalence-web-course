@@ -1,13 +1,21 @@
 import { Query } from './index';
 
-const all = async () => Query('SELECT * FROM Users');
-const one = async (id: number) => Query('SELECT * FROM Users WHERE id = ?', [id])
-const insertOne = async (userid: number, text: string, location: string) => {
-    return Query("INSERT INTO Chirps(userid, text, location) VALUES (?, ?, ?)", [userid, text, location]);
+const allChirps = async () => Query('SELECT * FROM Chirps');
+const oneChirp = async (id: number) => Query('SELECT * FROM Chirps WHERE id = ?;', [id])
+const insertOneChirp = async (userid: number, text: string) => {
+    return Query("INSERT INTO Chirps(authorid, message) VALUES (?, ?); LAST_INSERT_ID();", [userid, text]);
+}
+const deleteOneChirp = async (chirpid: number) => {
+    return Query("DELETE FROM Chirps WHERE id = ?;", [chirpid]);
+}
+const updateOneChirp = async (chirpid: number, userid: number, text: string) => {
+    return Query("UPDATE Chirps SET id=?, authorid=?, message=?", [chirpid, userid, text]);
 }
 
 export default {
-    all,
-    one,
-    insertOne
+    allChirps,
+    oneChirp,
+    insertOneChirp,
+    deleteOneChirp,
+    updateOneChirp
 }

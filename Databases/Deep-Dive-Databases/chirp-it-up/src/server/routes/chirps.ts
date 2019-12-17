@@ -1,5 +1,5 @@
 import * as express from 'express';
-import store from '../chirpstore';
+import db from './db'
 
 let chirpsRouter = express.Router();
 
@@ -10,43 +10,51 @@ chirpsRouter.use('/', (req, resp, next) => {
 
 chirpsRouter.get('/:id?', (req, resp) => {
     if (req.params.id) {
-        let chirp = store.GetChirp(Number(req.params.id));
-        resp.json(chirp);
+        db.Chirps.oneChirp(Number(req.params.id))
+        .then(chirp => resp.json(chirp))
+        .catch(() => {
+            resp.sendStatus(500);
+        });
     } else {
-        let chirps = store.GetChirps();
-        resp.json(chirps);
+        db.Chirps.allChirps()
+        .then(chirps => resp.json(chirps))
+        .catch(() => {
+            resp.sendStatus(500);
+        });
     }
 });
 
 chirpsRouter.post('/', (req, resp) => {
-    let id = store.GetChirps().nextid;
-    
-    store.CreateChirp({
-        author: req.body.author,
-        message: req.body.message
+   
+    db.Chirps.insertOneChirp(req.body.author, req.body.message)
+    .then(id => {
+        resp.status(200).json(id);
+    })
+    .catch(() => {
+        resp.sendStatus(500);
     });
-
-    resp.status(200).json(id);
 });
 
 chirpsRouter.delete('/:id', (req, resp) => {
-    store.DeleteChirp(
-        Number(req.params.id)
-    );
 
-    resp.sendStatus(200);
+    db.Chirps.deleteOneChirp(Number(req.params.id))
+    .then(() => {
+        resp.sendStatus(200);
+    })
+    .catch(() => {
+        resp.sendStatus(500);
+    });
 });
 
 chirpsRouter.put('/:id', (req, resp) => {
-    store.UpdateChirp(
-        Number(req.params.id),
-        {
-            author: req.body.author,
-            message: req.body.message
-        }
-    );
 
-    resp.sendStatus(200);
+    db.Chirps.updateOneChirp(Number(req.params.id), req.body.author, req.body.message)
+    .then(() => {
+        resp.sendStatus(200);
+    })
+    .catch(() => {
+        resp.sendStatus(500);
+    });
 });
 
 export default chirpsRouter;
