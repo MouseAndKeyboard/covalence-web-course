@@ -27,10 +27,10 @@ usersRouter.get('/:id?', (req, resp) => {
 usersRouter.post('/', (req, resp) => {
    
     db.Users.insertOne(req.body.name)
-    .then(id => {
-        resp.status(200).json(id);
+    .then(() => {
+        resp.sendStatus(200);
     })
-    .catch(() => {
+    .catch((err) => {
         resp.sendStatus(500);
     });
 });

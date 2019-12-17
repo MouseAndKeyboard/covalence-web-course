@@ -27,8 +27,8 @@ chirpsRouter.get('/:id?', (req, resp) => {
 chirpsRouter.post('/', (req, resp) => {
    
     db.Chirps.insertOne(req.body.author, req.body.message)
-    .then(id => {
-        resp.status(200).json(id);
+    .then(() => {
+        resp.sendStatus(200);
     })
     .catch(() => {
         resp.sendStatus(500);
