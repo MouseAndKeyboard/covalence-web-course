@@ -30,7 +30,9 @@ chirpsRouter.post('/', (req, resp) => {
     .then(() => {
         resp.sendStatus(200);
     })
-    .catch(() => {
+    .catch((err) => {
+        console.log(err);
+        
         resp.sendStatus(500);
     });
 });
@@ -48,7 +50,7 @@ chirpsRouter.delete('/:id', (req, resp) => {
 
 chirpsRouter.put('/:id', (req, resp) => {
 
-    db.Chirps.updateOne(Number(req.params.id), req.body.author, req.body.message)
+    db.Chirps.updateOne(Number(req.params.id), req.body.message)
     .then(() => {
         resp.sendStatus(200);
     })
