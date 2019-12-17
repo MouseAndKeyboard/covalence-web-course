@@ -3,9 +3,10 @@ import $ from 'jquery';
 import Chirp from './Chirp'
 
 interface ITimelineChirp {
-    user: string,
+    id: number
+    authorid: number,
     message: string,
-    key: string
+    _created: Date
 }
 
 interface ITimelineState {
@@ -33,22 +34,7 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
         fetch('/api/chirps')
         .then(resp => resp.json())
         .then(obj => {
-            let downloadedChirps: Array<ITimelineChirp> = [];
-            for (const key in obj) {
-                if (key !== "nextid") {
-                    if (obj.hasOwnProperty(key)) {
-                        const element = obj[key];
-
-                        downloadedChirps.push({
-                            user: element.author,
-                            message: element.message,
-                            key: key
-                        });
-
-                    }
-                }
-            }
-
+            let downloadedChirps: Array<ITimelineChirp> = obj;
             this.setState({ chirps: downloadedChirps });
         });
     }
@@ -85,7 +71,7 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
         let chirps = this.state.chirps.map(chirp => {
             
             return (
-                <Chirp poster={chirp.user} message={chirp.message} key={chirp.key} id={chirp.key} />
+                <Chirp poster={chirp.authorid.toString()} message={chirp.message} key={chirp.id} id={chirp.id.toString()} />
             )
         });
 
