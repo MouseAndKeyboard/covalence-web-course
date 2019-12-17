@@ -3,3 +3,11 @@ $theme-colors: (
 );
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+.jumbotron-fluid {
+    background-color: #009cea;
+}
+
+#main {
+    background-color: white;
+}
