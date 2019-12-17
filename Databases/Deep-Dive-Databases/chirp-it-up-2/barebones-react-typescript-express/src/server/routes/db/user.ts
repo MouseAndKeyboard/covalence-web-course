@@ -3,7 +3,7 @@ import { Query } from './index';
 const all = async () => Query('SELECT * FROM Author');
 const one = async (id: number) => Query('SELECT * FROM Author WHERE id = ?;', [id])
 const insertOne = async (name: string) => {
-    return Query("INSERT INTO Author(name) VALUES (?); LAST_INSERT_ID();", [name]);
+    return Query("INSERT INTO Author(name) VALUES (?);", [name]);
 }
 const deleteOne = async (userid: number) => {
     return Query("DELETE FROM Author WHERE id = ?;", [userid]);
