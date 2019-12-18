@@ -51,13 +51,13 @@ blogRouter.put('/:id', async (req, resp) => {
     try {
         let post: blogPost = req.body;
         let blogId = Number(req.params.id);
-        let dbData = await db.blog.Update(blogId, post.title, post.body, post.author);
-        
+        await db.blog.Update(blogId, post.title, post.body, post.author);
+        db.tag.ClearTags(blogId);
         post.tags.forEach(tagId => {            
             db.tag.AddTag(blogId, tagId);
         })
 
-        resp.status(200).json(dbData.insertId);
+        resp.status(200).json(blogId);
     } catch (error) {
         console.log(error);
         resp.sendStatus(500);
