@@ -3,15 +3,64 @@ import db from '../db';
 
 let blogRouter = express.Router();
 
-blogRouter.use('/', async (req, resp, next) => {
+blogRouter.get('/', async (req, resp) => {
     try {
         let allBlogs = await db.blog.All();
         resp.status(200).json(allBlogs);
     } catch (error) {
         console.log(error);
         resp.sendStatus(500);
-    } finally {
-        next();
+    }
+});
+
+blogRouter.get('/:id', async (req, resp) => {
+    try {
+        let blog = await db.blog.One(Number(req.params.id));
+        resp.status(200).json(blog);
+    } catch (error) {
+        console.log(error);
+        resp.sendStatus(500);
+    }
+});
+
+interface blogPost {
+    title: string,
+    body: string,
+    author: number
+    tags: Array<number>
+}
+
+blogRouter.post('/', async (req, resp) => {
+    try {
+        let post: blogPost = req.body;
+        
+        let dbData = await db.blog.Insert(post.title, post.body, post.author);
+        let blogId = dbData.insertId;
+        post.tags.forEach(tagId => {            
+            db.tag.AddTag(blogId, tagId);
+        })
+
+        resp.status(200).json(dbData.insertId);
+    } catch (error) {
+        console.log(error);
+        resp.sendStatus(500);
+    }
+});
+
+blogRouter.put('/:id', async (req, resp) => {
+    try {
+        let post: blogPost = req.body;
+        let blogId = Number(req.params.id);
+        let dbData = await db.blog.Update(blogId, post.title, post.body, post.author);
+        
+        post.tags.forEach(tagId => {            
+            db.tag.AddTag(blogId, tagId);
+        })
+
+        resp.status(200).json(dbData.insertId);
+    } catch (error) {
+        console.log(error);
+        resp.sendStatus(500);
     }
 });
 
