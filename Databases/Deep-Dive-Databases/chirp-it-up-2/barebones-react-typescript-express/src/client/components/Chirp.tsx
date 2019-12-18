@@ -13,6 +13,8 @@ export interface IChirpProps {
 
 const Chirp: React.FunctionComponent<IChirpProps> = (props: IChirpProps) => {
    
+    
+
     let history = useHistory();
     let deleteChirp = (event: React.MouseEvent<HTMLButtonElement>) => {
         console.log(props.id);
@@ -31,13 +33,14 @@ const Chirp: React.FunctionComponent<IChirpProps> = (props: IChirpProps) => {
 
     // let d = new Date(props.timeStamp);
     let link = `/edit/${props.id}`
+    let mentionsLink = `/mentions/${props.id}`
 
     return (
         <div className="card m-1">
             <div className="card-header">
                 <div className="row">
                     <div className="col">
-                        {props.poster}
+                        <Link to={mentionsLink}>{props.poster}</Link> 
                     </div>
 
                     <div className="col d-flex flex-row-reverse">

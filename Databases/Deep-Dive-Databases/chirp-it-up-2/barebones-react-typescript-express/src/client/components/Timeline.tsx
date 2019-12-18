@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
 import Chirp from './Chirp'
+import {useState, useEffect} from "react";
 
 interface ITimelineChirp {
     id: number
@@ -46,7 +47,7 @@ class Timeline extends Component<ITimelineProps, ITimelineState> {
 
     handleClick = (eventArgs: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         eventArgs.preventDefault();
-        
+
         $.ajax('/api/chirps', { type: "POST", contentType: "application/json; charset=utf-8",  data: JSON.stringify({ author: this.state.name, message: this.state.message }) });
         this.loadChirps();
     }

@@ -1,11 +1,21 @@
 import * as express from 'express';
-import db from './db'
+import db from './db';
 
 let chirpsRouter = express.Router();
 
 
 chirpsRouter.use('/', (req, resp, next) => {
     next();
+});
+
+chirpsRouter.use('/mentions/:id', (req, resp) => {
+
+    db.Mentions.mentionsFor(Number(req.params.id))
+    .then(r => resp.json(r))
+    .catch(err => {
+        resp.sendStatus(500);
+    })
+
 });
 
 chirpsRouter.get('/:id?', (req, resp) => {
@@ -25,9 +35,19 @@ chirpsRouter.get('/:id?', (req, resp) => {
 });
 
 chirpsRouter.post('/', (req, resp) => {
-   
+    
+
     db.Chirps.insertOne(req.body.author, req.body.message)
-    .then(() => {
+    .then((newid) => {
+        
+        let mentions = new Set(((/@[A-Za-z0-9_-]*/g).exec(req.body.message)).map(x => x.substr(1)));
+        
+        mentions.forEach(name => {
+            console.log(newid);
+            
+            db.Mentions.insertOneByName(Number(newid[0][0].id), name);
+        })
+
         resp.sendStatus(200);
     })
     .catch((err) => {
