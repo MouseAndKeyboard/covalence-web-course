@@ -52,7 +52,7 @@ blogRouter.put('/:id', async (req, resp) => {
         let post: blogPost = req.body;
         let blogId = Number(req.params.id);
         await db.blog.Update(blogId, post.title, post.body, post.author);
-        db.tag.ClearTags(blogId);
+        await db.tag.ClearTags(blogId);
         post.tags.forEach(tagId => {            
             db.tag.AddTag(blogId, tagId);
         })
