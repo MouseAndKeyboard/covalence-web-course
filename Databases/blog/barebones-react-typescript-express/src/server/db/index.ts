@@ -1,7 +1,9 @@
 import * as msql from 'mysql';
 import cfg from '../config';
 
-let pool = msql.createPool(cfg);
+import blog from './blog';
+
+let pool = msql.createPool(cfg.mysql);
 
 export const Query = (query: string, values?: Array<string | number>) => {
     return new Promise<Array<any>>((resolve, reject) => {
@@ -22,5 +24,5 @@ export const Query = (query: string, values?: Array<string | number>) => {
 }
 
 export default {
-    
+    blog
 }
