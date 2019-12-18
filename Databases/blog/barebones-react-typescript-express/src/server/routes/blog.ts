@@ -13,6 +13,18 @@ blogRouter.get('/', async (req, resp) => {
     }
 });
 
+
+blogRouter.get('/:id/tags', async (req, resp) => {
+    try {
+        let blogId = Number(req.params.id);
+        let tags = (await db.tag.GetTags(blogId))[0];
+        resp.status(200).json(tags);
+    } catch (error) {
+        console.log(error);
+        resp.sendStatus(500);
+    }
+});
+
 blogRouter.get('/:id', async (req, resp) => {
     try {
         let blog = await db.blog.One(Number(req.params.id));
@@ -64,5 +76,16 @@ blogRouter.put('/:id', async (req, resp) => {
     }
 });
 
+blogRouter.delete('/:id', async (req, resp) => {
+    try {
+        let blogId = Number(req.params.id);
+        await db.tag.ClearTags(blogId);
+        await db.blog.Delete(blogId);
+        resp.status(200).json(blogId);
+    } catch (error) {
+        console.log(error);
+        resp.sendStatus(500);
+    }
+});
 
 export default blogRouter; 
