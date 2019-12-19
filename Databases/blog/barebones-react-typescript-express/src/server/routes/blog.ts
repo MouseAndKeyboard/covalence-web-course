@@ -37,7 +37,7 @@ blogRouter.get('/:id', async (req, resp) => {
 
 interface blogPost {
     title: string,
-    body: string,
+    content: string,
     author: number
     tags: Array<number>
 }
@@ -45,8 +45,8 @@ interface blogPost {
 blogRouter.post('/', async (req, resp) => {
     try {
         let post: blogPost = req.body;
-        
-        let dbData = await db.blog.Insert(post.title, post.body, post.author);
+        post.author = 1;
+        let dbData = await db.blog.Insert(post.title, post.content, post.author);
         let blogId = dbData.insertId;
         post.tags.forEach(tagId => {            
             db.tag.AddTag(blogId, tagId);
@@ -63,11 +63,11 @@ blogRouter.put('/:id', async (req, resp) => {
     try {
         let post: blogPost = req.body;
         let blogId = Number(req.params.id);
-        await db.blog.Update(blogId, post.title, post.body, post.author);
-        await db.tag.ClearTags(blogId);
-        post.tags.forEach(tagId => {            
-            db.tag.AddTag(blogId, tagId);
-        })
+        await db.blog.Update(blogId, post.title, post.content, post.author);
+        // await db.tag.ClearTags(blogId);
+        // post.tags.forEach(tagId => {            
+        //     db.tag.AddTag(blogId, tagId);
+        // })
 
         resp.status(200).json(blogId);
     } catch (error) {
