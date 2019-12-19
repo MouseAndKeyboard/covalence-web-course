@@ -28,7 +28,7 @@ blogRouter.get('/:id/tags', async (req, resp) => {
 blogRouter.get('/:id', async (req, resp) => {
     try {
         let blog = await db.blog.One(Number(req.params.id));
-        resp.status(200).json(blog);
+        resp.status(200).json(blog[0]);
     } catch (error) {
         console.log(error);
         resp.sendStatus(500);
