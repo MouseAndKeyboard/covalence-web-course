@@ -35,7 +35,7 @@ export default class BlogEditPage extends React.Component<IBlogEditPageProps, IB
 
         let formdata = $("#newPost").serializeArray();
 
-        let formDataObject = formdata.reduce((o, val) => {
+        let formDataObject = formdata.reduce((o: any, val) => {
             o[val.name] = val.value;
             return o;
         }, {});

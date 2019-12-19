@@ -47,9 +47,8 @@ export default class CreatePage extends React.Component<ICreatePageProps, ICreat
         event.preventDefault();
 
         let formdata = jq("#newPost").serializeArray();
-        console.log(formdata);
         
-        let formDataObject = formdata.reduce((o, val) => {
+        let formDataObject = formdata.reduce((o: any, val) => {
             if (val.name === "tags"){
                 if (o["tags"]){
                     o["tags"].push(val.value);
