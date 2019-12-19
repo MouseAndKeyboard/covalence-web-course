@@ -6,9 +6,11 @@ import db from '../db/';
 
 passport.use(new BearerStrategy.Strategy(async (token, done) => {
     try {
-
         let payload = await ValidateToken(token);
+
         let [user] = await db.authors.findOneByID(payload.userid);
+
+
         if (user) {
             done(null, user);
         } else {
@@ -18,5 +20,3 @@ passport.use(new BearerStrategy.Strategy(async (token, done) => {
         done(error);
     }
 }));
-
-export default passport;
