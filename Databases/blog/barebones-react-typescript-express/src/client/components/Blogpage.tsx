@@ -65,7 +65,11 @@ export default class Blogpage extends React.Component<IBlogpageProps, IBlogpageS
 
         let date = new Date(this.state.blog._created);
 
-        return (
+        let tagObjs = this.state.tags.map(tag => {
+            return (<span className="badge badge-pill badge-secondary m-1" key={tag.id}>{tag.name}</span>)
+        })
+
+        return ( 
             <React.Fragment>
                 <div className="jumbotron jumbotron-fluid bg-light shadow">
                     <div className="jumbotron-background">
@@ -76,6 +80,7 @@ export default class Blogpage extends React.Component<IBlogpageProps, IBlogpageS
                         <h1 className="display-4">{this.state.blog.title}</h1>
                         <p className="lead">{date.toDateString()}</p>
                         <p>{this.state.blog.name}</p>
+                        <p>{tagObjs}</p>
                     </div>
 
                 </div>
