@@ -5,5 +5,8 @@ export default {
         password: process.env.SQL_PASS,
         host: process.env.SQL_HOST,
         database: process.env.SCHEMA
+    },
+    auth: {
+        secret: process.env.SECRET
     }
 }
