@@ -67,7 +67,9 @@ export default class Blogpage extends React.Component<IBlogpageProps, IBlogpageS
 
                 </div>
                 <div className="container">
-                    {this.state.blog.content}
+                    <div className="text-break word-wrap">
+                        {this.state.blog.content}
+                    </div>
                 </div>
             </React.Fragment>
 
