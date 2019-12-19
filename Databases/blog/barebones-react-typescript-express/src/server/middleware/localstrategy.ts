@@ -3,6 +3,7 @@ import * as LocalStrategy from 'passport-local';
 
 import { ComparePassword } from '../utils/security/passwords';
 import db from '../db/';
+import { IAuthor } from '../db/authors';
 
 passport.serializeUser((user, done) => {
     done(null, user);
@@ -16,7 +17,7 @@ passport.use(new LocalStrategy.Strategy({
 }, async (email, password, done) => {
     try {
         // find by email
-        let [user] = await db.authors.findOneByEmail(email);
+        let user = <IAuthor>((await db.authors.findOneByEmail(email))[0]);
         // if that email exists and the password the user provides the one matched in the DB
         if (user && ComparePassword(password, user.password)){
             // authenticated
@@ -31,3 +32,5 @@ passport.use(new LocalStrategy.Strategy({
         done(error);
     }
 }));
+
+export default passport;

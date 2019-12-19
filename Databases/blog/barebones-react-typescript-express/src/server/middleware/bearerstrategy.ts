@@ -18,3 +18,5 @@ passport.use(new BearerStrategy.Strategy(async (token, done) => {
         done(error);
     }
 }));
+
+export default passport;
