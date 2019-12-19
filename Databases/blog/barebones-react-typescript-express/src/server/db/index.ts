@@ -3,6 +3,9 @@ import cfg from '../config';
 
 import blog from './blog';
 import tag from './tag';
+import authors from './authors';
+import tokens from './tokens';
+
 
 let pool = msql.createPool(cfg.mysql);
 
@@ -54,5 +57,7 @@ export const Command = (query: string, values?: Array<string | number>) => {
 
 export default {
     blog,
-    tag
+    tag,
+    authors,
+    tokens
 }
