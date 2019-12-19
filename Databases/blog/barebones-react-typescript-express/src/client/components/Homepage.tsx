@@ -30,7 +30,7 @@ export default class Homepage extends React.Component<IHomepageProps, IHomepageS
     }
 
     componentDidMount() {
-        
+
 
         $.ajax("/api/blog", { method: "GET" })
             .then((blogList: Array<blogPost>) => {
@@ -56,11 +56,11 @@ export default class Homepage extends React.Component<IHomepageProps, IHomepageS
 
         return (
             <React.Fragment>
-
-                <div className="d-flex flex-row flex-wrap-reverse justify-content-center align-content-center">
-                    {this.state.previewCards}
-                </div>
-
+                <main className="container my-5 ">
+                    <div className="d-flex flex-row flex-wrap-reverse justify-content-center align-content-center">
+                        {this.state.previewCards}
+                    </div>
+                </main>
             </React.Fragment>
         );
     }
