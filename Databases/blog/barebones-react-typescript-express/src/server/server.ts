@@ -1,9 +1,12 @@
 import * as express from 'express';
-import apiRouter from './routes/api';
 import * as passport from 'passport';
 import * as path from 'path';
 
+import './middleware/localstrategy';
+import './middleware/bearerstrategy';
+
 import router from './routes/'
+
 
 const app = express();
 
