@@ -70,7 +70,7 @@ export default class CreatePage extends React.Component<ICreatePageProps, ICreat
     render() {
 
         if (this.state.toHome === true) {
-            return <Redirect to='/' />
+            return <Redirect to={`/`} />
           }
 
         let tagObjects = this.state.tags.map(tag => {
@@ -110,8 +110,8 @@ export default class CreatePage extends React.Component<ICreatePageProps, ICreat
                                     </div>
                                     <div className="form-group">
                                         {/* content */}
-                                        <label htmlFor="body">Blog</label>
-                                        <textarea className="form-control" name="body" id="body" />
+                                        <label htmlFor="content">Blog</label>
+                                        <textarea className="form-control" name="content" id="content" />
                                     </div>
                                     <button className="btn btn-success" onClick={this.submit}>Publish</button>
                                 </form>

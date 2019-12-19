@@ -56,7 +56,7 @@ export default class Homepage extends React.Component<IHomepageProps, IHomepageS
 
         return (
             <React.Fragment>
-                <main className="container my-5 ">
+                <main className="container my-5">
                     <div className="d-flex flex-row flex-wrap-reverse justify-content-center align-content-center">
                         {this.state.previewCards}
                     </div>
