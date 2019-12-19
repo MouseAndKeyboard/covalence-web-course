@@ -14,9 +14,8 @@ interface IHomepageState {
 interface blogPost {
     id: number,
     title: string,
-    body: string,
-    author: number
-    tags: Array<number>
+    _created: string
+    author: string,
 }
 
 export default class Homepage extends React.Component<IHomepageProps, IHomepageState>  {
@@ -38,8 +37,11 @@ export default class Homepage extends React.Component<IHomepageProps, IHomepageS
 
 
                 let blogCards = blogList.map(post => {
+
+                    let date = new Date(post._created);
+
                     return (
-                        <BlogPreview key={post.id}/>
+                        <BlogPreview authorName={post.author} blogId={post.id} key={post.id} title={post.title} date={date.toDateString()} />
                     );
                 });
 
@@ -55,7 +57,7 @@ export default class Homepage extends React.Component<IHomepageProps, IHomepageS
         return (
             <React.Fragment>
 
-                <div className="d-flex flex-row flex-wrap justify-content-between">
+                <div className="d-flex flex-row flex-wrap-reverse justify-content-center align-content-center">
                     {this.state.previewCards}
                 </div>
 
