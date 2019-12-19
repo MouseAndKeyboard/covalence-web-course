@@ -1,12 +1,18 @@
 import * as express from 'express';
-import apiRouter from './routes/';
-
+import apiRouter from './routes/api';
+import * as passport from 'passport';
 import * as path from 'path';
+
+import router from './routes/'
 
 const app = express();
 
 app.use(express.static('public'));
-app.use('/api', apiRouter);
+app.use(express.json());
+
+app.use(passport.initialize());
+
+app.use('/', router);
 
 app.use('*', (req, resp, next) => {
     resp.sendFile(path.join(__dirname, '../public/index.html'));
