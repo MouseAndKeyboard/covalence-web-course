@@ -9,15 +9,22 @@ interface IBlogpageProps extends RouteComponentProps<{ id: string }> {
 
 interface IBlogpageState {
     blog: Blog
+    tags: Array<Tag>
 }
 
-interface Blog {
+export interface Blog {
     id: number,
     title: string,
     content: string,
     authorid: number,
     _created: string,
     name: string
+}
+
+interface Tag {
+    id: number, 
+    name: string, 
+    _created: string
 }
 
 export default class Blogpage extends React.Component<IBlogpageProps, IBlogpageState>  {
@@ -32,20 +39,26 @@ export default class Blogpage extends React.Component<IBlogpageProps, IBlogpageS
                 authorid: -1,
                 _created: "",
                 name: ""
-            }
+            },
+            tags: []
         }
 
     }
 
-    componentDidMount() {
+    getData = async () => {
+        try {
+            let blog: Blog = await $.ajax(`/api/blog/${this.props.match.params.id}`, { method: "GET" });
+            let tags: Array<Tag> = await $.ajax(`/api/blog/${this.props.match.params.id}/tags`, { method: "GET" });
 
-        $.ajax(`/api/blog/${this.props.match.params.id}`, { method: "GET" })
-            .then((blog: Blog) => {
-                this.setState({ blog: blog });
-            })
-            .catch(err => {
-                console.log(err);
-            })
+            this.setState({ blog, tags });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    componentDidMount() {
+        this.getData();
+
     }
 
     render() {
