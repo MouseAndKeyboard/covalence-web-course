@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
 import Homepage from './components/Homepage';
+import Blogpage from './components/Blogpage';
+import CreatePage from './components/CreatePage';
 
 class App extends React.Component<IAppProps, IAppState> {
 	constructor(props: IAppProps) {
@@ -28,7 +30,7 @@ class App extends React.Component<IAppProps, IAppState> {
 								<Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
 							</li>
 							<li className="nav-item">
-								<Link className="nav-link" to="/blogs/new">Create Blogpost</Link>
+								<Link className="nav-link" to="/new">Create Blogpost</Link>
 
 							</li>
 						</ul>
@@ -38,6 +40,8 @@ class App extends React.Component<IAppProps, IAppState> {
 					</div>
 				</nav>
 				<Route exact path="/" component={Homepage} />
+				<Route exact path="/new/" component={CreatePage}/>
+				<Route exact path="/blogs/:id" component={Blogpage} />
 			</Router>
 
 		);
