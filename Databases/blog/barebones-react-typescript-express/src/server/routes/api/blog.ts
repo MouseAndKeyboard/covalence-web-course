@@ -5,7 +5,7 @@ let blogRouter = express.Router();
 
 const isAdmin : express.RequestHandler = (req: any, res, next) => {
     
-    if (!req.user || req.user.role !== 'guest'){
+    if (!req.user || req.user.role !== 'admin'){
         return res.sendStatus(401);
     } else {
         return next();
@@ -25,7 +25,7 @@ blogRouter.get('/:id/tags', async (req, resp) => {
     }
 });
 
-blogRouter.get('/:id', isAdmin, async (req, resp) => {
+blogRouter.get('/:id', async (req, resp) => {
     
     try {
         let blog = await db.blog.One(Number(req.params.id));

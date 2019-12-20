@@ -5,6 +5,7 @@ import Homepage from './components/Homepage';
 import Blogpage from './components/Blogpage';
 import CreatePage from './components/CreatePage';
 import BlogEditPage from './components/BlogEditPage';
+import Login from './components/Login';
 
 class App extends React.Component<IAppProps, IAppState> {
 	constructor(props: IAppProps) {
@@ -41,6 +42,7 @@ class App extends React.Component<IAppProps, IAppState> {
 					</div>
 				</nav>
 				<Route exact path="/" component={Homepage} />
+				<Route exact path="/login" component={Login} />
 				<Route exact path="/new/" component={CreatePage}/>
 				<Route exact path="/blogs/:id" component={Blogpage} />
 				<Route exact path="/blogs/:id/edit" component={BlogEditPage} />
