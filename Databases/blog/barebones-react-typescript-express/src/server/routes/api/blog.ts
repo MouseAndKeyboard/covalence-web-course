@@ -88,7 +88,6 @@ interface blogPost {
 blogRouter.post('/', async (req, resp) => {
     try {
         let post: blogPost = req.body;
-        post.author = 1;
         let dbData = await db.blog.Insert(post.title, post.content, post.author);
         let blogId = dbData.insertId;
         post.tags.forEach(tagId => {            
