@@ -6,6 +6,7 @@ import Blogpage from './components/Blogpage';
 import CreatePage from './components/CreatePage';
 import BlogEditPage from './components/BlogEditPage';
 import Login from './components/Login';
+import DonatePage from './components/DonatePage';
 
 class App extends React.Component<IAppProps, IAppState> {
 	constructor(props: IAppProps) {
@@ -32,8 +33,10 @@ class App extends React.Component<IAppProps, IAppState> {
 								<Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
 							</li>
 							<li className="nav-item">
+								<Link className="nav-link" to="/donate">Donate</Link>
+							</li>
+							<li className="nav-item">
 								<Link className="nav-link" to="/new">Create Blogpost</Link>
-
 							</li>
 						</ul>
 						<span className="navbar-text">
@@ -44,6 +47,7 @@ class App extends React.Component<IAppProps, IAppState> {
 				<Route exact path="/" component={Homepage} />
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/new/" component={CreatePage}/>
+				<Route exact path="/donate" component={DonatePage}/>
 				<Route exact path="/blogs/:id" component={Blogpage} />
 				<Route exact path="/blogs/:id/edit" component={BlogEditPage} />
 			</Router>
