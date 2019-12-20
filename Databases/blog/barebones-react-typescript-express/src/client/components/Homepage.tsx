@@ -1,13 +1,14 @@
 import React from 'react';
 import BlogPreview from './BlogPreview';
 import $ from 'jquery';
+import { json } from '../utils/api';
 
 interface IHomepageProps {
 
 }
 
 interface IHomepageState {
-    previewCards: Array<JSX.Element>
+    previewCards: Array<blogPost>
 }
 
 
@@ -29,36 +30,32 @@ export default class Homepage extends React.Component<IHomepageProps, IHomepageS
 
     }
 
-    componentDidMount() {
+    async componentDidMount() {
 
-
-        $.ajax("/api/blog", { method: "GET" })
-            .then((blogList: Array<blogPost>) => {
-
-
-                let blogCards = blogList.map(post => {
-
-                    let date = new Date(post._created);
-
-                    return (
-                        <BlogPreview authorName={post.author} blogId={post.id} key={post.id} title={post.title} date={date.toDateString()} />
-                    );
-                });
-
-                this.setState({ previewCards: blogCards });
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        try {
+            let blogs = await json('/api/blog');
+            this.setState({ previewCards: blogs });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     render() {
+
+        let blogCards = this.state.previewCards.map(post => {
+
+            let date = new Date(post._created);
+
+            return (
+                <BlogPreview authorName={post.author} blogId={post.id} key={post.id} title={post.title} date={date.toDateString()} />
+            );
+        });
 
         return (
             <React.Fragment>
                 <main className="container my-5">
                     <div className="d-flex flex-row flex-wrap-reverse justify-content-center align-content-center">
-                        {this.state.previewCards}
+                        {blogCards}
                     </div>
                 </main>
             </React.Fragment>

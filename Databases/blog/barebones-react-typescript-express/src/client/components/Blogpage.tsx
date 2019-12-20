@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import $ from 'jquery';
-
+import { json } from '../utils/api';
 
 interface IBlogpageProps extends RouteComponentProps<{ id: string }> {
 
@@ -47,8 +47,8 @@ export default class Blogpage extends React.Component<IBlogpageProps, IBlogpageS
 
     getData = async () => {
         try {
-            let blog: Blog = await $.ajax(`/api/blog/${this.props.match.params.id}`, { method: "GET" });
-            let tags: Array<Tag> = await $.ajax(`/api/blog/${this.props.match.params.id}/tags`, { method: "GET" });
+            let blog = (await json(`/api/blog/${this.props.match.params.id}`));
+            let tags = (await json(`/api/blog/${this.props.match.params.id}/tags`));
 
             this.setState({ blog, tags });
         } catch (error) {

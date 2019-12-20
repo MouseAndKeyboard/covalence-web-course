@@ -1,9 +1,10 @@
 import React from 'react';
 import jq from 'jquery';
 declare var $: any;
-import * as bs from 'bootstrap';
-import { Redirect } from 'react-router-dom';
-interface ICreatePageProps {
+import { json, User } from '../utils/api';
+import { Redirect, RouteComponentProps } from 'react-router-dom';
+
+interface ICreatePageProps extends RouteComponentProps {
 }
 
 interface ICreatePageState {
@@ -29,22 +30,32 @@ export default class CreatePage extends React.Component<ICreatePageProps, ICreat
         }
     }
 
-    componentDidMount() {
-        jq.ajax('/api/tags/', { method: "GET" })
-            .then((tags: Array<Tag>) => {
-                this.setState({ tags, loading: false });
-            })
-            .catch((err: any) => {
-                console.log(err);
-            })
+    private saving: boolean = false;
+
+    async componentDidMount() {
+        
+        if (!User || User.userid === null || User.role !== 'admin') {
+            this.props.history.replace('/login');
+        }
+        
+        try {
+            let result = (await json('/api/tags'));
+            this.setState({tags: result, loading: false});
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     componentDidUpdate() {
         $('select').selectpicker();
     }
 
-    submit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    submit = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+        if (this.saving){
+            return;
+        }
+        this.saving = true;
 
         let formdata = jq("#newPost").serializeArray();
         
@@ -60,10 +71,18 @@ export default class CreatePage extends React.Component<ICreatePageProps, ICreat
             }
             return o;
         }, {});
+        formDataObject['author'] = User.userid;
 
-        let formData = JSON.stringify(formDataObject);
-        jq.ajax('/api/blog', {method: "POST", data: formData, dataType: "JSON", contentType : "application/json" })
-        this.setState({toHome: true});
+        try {
+            let result = (await json('/api/blog', 'POST', formDataObject));
+        } catch (error) {
+            console.log(error);
+            
+        } finally {
+            this.saving = false;
+            this.setState({toHome: true});
+        }
+
     };
 
     render() {
