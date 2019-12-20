@@ -1,15 +1,25 @@
-import stripeLoader from 'stripe'; 
+const stripe = require('stripe')(cfg.stripe.secretKey);
 import cfg from '../../config/'
 //define secret key in ENV_VAR
 
-const stripe = new stripeLoader(cfg.stripe.secretKey); 
+export default async function blogPayment() {
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: 1099,
+        currency: 'aud',
+    });
 
-function charge(token: string, amt: number) { 
-    return stripe.charges.create({ 
+    let cs = paymentIntent.client_secret
+}
+
+function charge(token: string, amt: number) {
+    console.log(stripe);
+    console.log(token);
+    return stripe.charges.create({
         amount: amt * 100, //convert amount from cents to dollars
         currency: 'usd',
-        source: token, 
-        description: 'Statement description' });
-}; 
+        source: token,
+        description: 'Statement description'
+    });
+};
 
 export { charge };
