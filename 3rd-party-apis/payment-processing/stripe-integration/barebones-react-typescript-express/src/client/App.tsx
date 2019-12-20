@@ -1,36 +1,29 @@
 import * as React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Homepage from './components/homepage';
+import PaymentPage from './components/payment-page';
+import { StripeProvider } from 'react-stripe-elements';
 
 class App extends React.Component<IAppProps, IAppState> {
 	constructor(props: IAppProps) {
 		super(props);
-		this.state = {
-			name: null
-		};
-	}
-
-	async componentDidMount() {
-		try {
-			let r = await fetch('/api/hello');
-			let name = await r.json();
-			this.setState({ name });
-		} catch (error) {
-			console.log(error);
-		}
 	}
 
 	render() {
 		return (
-			<main className="container my-5">
-				<h1 className="text-primary text-center">Hello {this.state.name}!</h1>
-			</main>
+			<StripeProvider apiKey="pk_test_giWqp3fHfxDJJ6zrxTV3BFtz00DFSbcK0X" >
+				<BrowserRouter>
+					<Route exact path='/' component={Homepage} />
+					<Route exact path='/purchase' component={PaymentPage} />
+				</BrowserRouter>
+			</StripeProvider>
 		);
 	}
 }
 
-export interface IAppProps {}
+export interface IAppProps { }
 
 export interface IAppState {
-	name: string;
 }
 
 export default App;
